@@ -2,7 +2,7 @@ import React from 'react';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import styles from './app.module.scss';
 
-import { Page, EarlyAccess, Register, Access } from "@cocodemy/cocuy";
+import { Page, EarlyAccess, Register, Access } from '@cocodemy/cocuy';
 import { StateContext } from '@cocodemy/contexts';
 import { Route, Routes } from 'react-router-dom';
 import { PrivateRoute } from '../utils/components/PrivateRoute';

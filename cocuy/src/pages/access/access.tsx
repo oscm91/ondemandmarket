@@ -1,6 +1,6 @@
 import styles from './access.module.scss';
-import Login from "../../forms/login/login";
-import { NavigatorState, UserState } from "@cocodemy/models";
+import Login from '../../forms/login/login';
+import { NavigatorState, UserState } from '@cocodemy/models';
 
 /* eslint-disable-next-line */
 export interface AccessProps {

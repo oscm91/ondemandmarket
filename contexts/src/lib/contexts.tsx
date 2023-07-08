@@ -6,7 +6,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import thunk from 'redux-thunk';
 
 import { State } from '@cocodemy/models';
-import { userSlice } from "@cocodemy/reducers";
+import { userSlice } from '@cocodemy/reducers';
 
 import { useUser } from './user/hook';
 import { useNavigator } from './navigator/hook';
@@ -16,7 +16,7 @@ export const store = configureStore({
     user: userSlice.reducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk),
-})
+});
 
 export const StateContext = createContext<State>({
   user: {
@@ -24,8 +24,8 @@ export const StateContext = createContext<State>({
     signupLoading: false,
   },
   navigator: {
-    pathname: ''
-  }
+    pathname: '',
+  },
 });
 
 interface StoreStateProviderProps {
@@ -36,12 +36,13 @@ export function StoreStateProvider({ children }: StoreStateProviderProps) {
   const user = useUser();
   const navigator = useNavigator();
 
-  const storeState:State = useMemo(() => ({ user, navigator }), [user, navigator]);
+  const storeState: State = useMemo(
+    () => ({ user, navigator }),
+    [user, navigator]
+  );
 
   return (
-    <StateContext.Provider value={storeState}>
-      {children}
-    </StateContext.Provider>
+    <StateContext.Provider value={storeState}>{children}</StateContext.Provider>
   );
 }
 
@@ -59,9 +60,7 @@ export function StateProvider({ children }: StateProviderProps) {
     <ApolloProvider client={client}>
       <BrowserRouter>
         <Provider store={store}>
-          <StoreStateProvider>
-            {children}
-          </StoreStateProvider>
+          <StoreStateProvider>{children}</StoreStateProvider>
         </Provider>
       </BrowserRouter>
     </ApolloProvider>

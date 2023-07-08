@@ -22,7 +22,7 @@ export interface UserState {
   login?: (credential: Credentials) => Promise<User>;
 }
 export interface NavigatorState {
-  pathname: string,
+  pathname: string;
   goToHome?: () => void;
   goToRegister?: () => void;
   goToLogin?: () => void;
@@ -30,7 +30,7 @@ export interface NavigatorState {
 }
 
 export interface Credentials {
-  email: string,
+  email: string;
   password: () => void;
 }
 

@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { User, UserStore } from "@cocodemy/models";
+import { User, UserStore } from '@cocodemy/models';
 
 export const userSlice = createSlice({
   name: 'user',
-  initialState: { } as UserStore,
+  initialState: {} as UserStore,
   reducers: {
     addUser: (state, action: PayloadAction<User>) => {
       const user = action.payload;
@@ -11,7 +11,7 @@ export const userSlice = createSlice({
         ...user,
         ...state,
       };
-    }
+    },
   },
 });
 

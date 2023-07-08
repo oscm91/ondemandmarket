@@ -1,13 +1,13 @@
 import { setupWorker, graphql } from 'msw';
 import localForage from 'localforage';
-import { User } from "@cocodemy/models";
+import { User } from '@cocodemy/models';
 
 const userStore = localForage.createInstance({
   name: 'userStore',
 });
 
 function delay(ms: number) {
-  return new Promise(resolve => setTimeout(resolve, ms));
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 export const worker = setupWorker(
@@ -43,23 +43,28 @@ export const worker = setupWorker(
     const { email, password } = req.variables;
 
     // Buscar todos los usuarios y encontrar el que coincide con el correo electrónico y la contraseña
-    return userStore.iterate((user, key, iterationNumber) => {
-      if ((user as User).email === email && (user as User).password === password) {
-        return user;
-      }
-    }).then(async (user) => {
-      await delay(3000);
+    return userStore
+      .iterate((user, key, iterationNumber) => {
+        if (
+          (user as User).email === email &&
+          (user as User).password === password
+        ) {
+          return user;
+        }
+      })
+      .then(async (user) => {
+        await delay(3000);
 
-      if (user) {
-        return res(
-          ctx.data({
-            login: user,
-          })
-        );
-      } else {
-        return res(ctx.errors([{ message: 'Invalid email or password' }]));
-      }
-    });
+        if (user) {
+          return res(
+            ctx.data({
+              login: user,
+            })
+          );
+        } else {
+          return res(ctx.errors([{ message: 'Invalid email or password' }]));
+        }
+      });
   }),
 
   graphql.query('User', (req, res, ctx) => {
