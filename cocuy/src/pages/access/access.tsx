@@ -17,8 +17,8 @@ export function Access({ user, navigator }: AccessProps) {
           console.log({
             ...values,
           });
-          user.login(values).then((user) => {
-            navigator.goToApp();
+          user.login?.(values).then((user) => {
+            navigator.goToApp?.();
           });
         }}
       />

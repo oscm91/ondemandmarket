@@ -84,7 +84,7 @@ export function Login({ onFormSubmit, navigator }: LoginProps) {
                   <a
                     href="/signup"
                     onClick={(e) => {
-                      navigator.goToRegister();
+                      navigator.goToRegister?.();
                       e.preventDefault();
                     }}
                   >

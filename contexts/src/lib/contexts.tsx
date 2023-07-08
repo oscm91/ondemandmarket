@@ -22,6 +22,7 @@ export const StateContext = createContext<State>({
   user: {
     authChecking: true,
     signupLoading: false,
+    loginLoading: false,
   },
   navigator: {
     pathname: '',
@@ -55,10 +56,11 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+const basename = import.meta.env.VITE_APP_BASENAME;
 export function StateProvider({ children }: StateProviderProps) {
   return (
     <ApolloProvider client={client}>
-      <BrowserRouter>
+      <BrowserRouter basename={basename}>
         <Provider store={store}>
           <StoreStateProvider>{children}</StoreStateProvider>
         </Provider>

@@ -17,8 +17,8 @@ export function Register({ user, navigator }: RegisterProps) {
           console.log({
             ...values,
           });
-          user.register(values).then((user) => {
-            navigator.goToApp();
+          user.register?.(values).then((user) => {
+            navigator.goToApp?.();
           });
         }}
       />

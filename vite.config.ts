@@ -3,41 +3,47 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import viteTsConfigPaths from 'vite-tsconfig-paths';
 
-export default defineConfig({
-  cacheDir: './node_modules/.vite/cocodemy',
+export default defineConfig(({ command }) => {
+  const isProduction = command === 'build';
+  const base = isProduction ? '/ondemandmarket/' : '/';
 
-  server: {
-    port: 4200,
-    host: 'localhost',
-  },
+  return {
+    base,
+    cacheDir: './node_modules/.vite/cocodemy',
 
-  preview: {
-    port: 4300,
-    host: 'localhost',
-  },
-
-  plugins: [
-    react(),
-    viteTsConfigPaths({
-      root: './',
-    }),
-  ],
-
-  // Uncomment this if you are using workers.
-  // worker: {
-  //  plugins: [
-  //    viteTsConfigPaths({
-  //      root: './',
-  //    }),
-  //  ],
-  // },
-
-  test: {
-    globals: true,
-    cache: {
-      dir: './node_modules/.vitest',
+    server: {
+      port: 4200,
+      host: 'localhost',
     },
-    environment: 'jsdom',
-    include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
-  },
+
+    preview: {
+      port: 4300,
+      host: 'localhost',
+    },
+
+    plugins: [
+      react(),
+      viteTsConfigPaths({
+        root: './',
+      }),
+    ],
+
+    // Uncomment this if you are using workers.
+    // worker: {
+    //  plugins: [
+    //    viteTsConfigPaths({
+    //      root: './',
+    //    }),
+    //  ],
+    // },
+
+    test: {
+      globals: true,
+      cache: {
+        dir: './node_modules/.vitest',
+      },
+      environment: 'jsdom',
+      include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    },
+  };
 });
