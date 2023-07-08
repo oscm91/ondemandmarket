@@ -31,7 +31,7 @@ export interface NavigatorState {
 
 export interface Credentials {
   email: string;
-  password: () => void;
+  password: string;
 }
 
 export interface State {

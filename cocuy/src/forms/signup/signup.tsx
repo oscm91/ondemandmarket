@@ -48,6 +48,7 @@ export function Signup({ onFormSubmit }: SignupProps) {
   return (
     <Formik
       initialValues={{
+        id: '',
         firstName: '',
         lastName: '',
         phoneNumber: '',

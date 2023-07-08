@@ -1,3 +1,4 @@
+import { Credentials } from "@cocodemy/models";
 import { Button, Flex, Link, TextField, View } from '@adobe/react-spectrum';
 import Email from '@spectrum-icons/workflow/Email';
 import LockClosed from '@spectrum-icons/workflow/LockClosed';
@@ -14,7 +15,7 @@ const LoginSchema = Yup.object().shape({
 });
 
 export interface LoginProps {
-  onFormSubmit: (values: { email: string; password: string }) => void;
+  onFormSubmit: (values: Credentials) => void;
 }
 
 export function Login({ onFormSubmit }: LoginProps) {

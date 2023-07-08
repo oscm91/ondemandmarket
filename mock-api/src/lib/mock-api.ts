@@ -44,13 +44,15 @@ export const worker = setupWorker(
 
     // Buscar todos los usuarios y encontrar el que coincide con el correo electrónico y la contraseña
     return userStore
-      .iterate((user, key, iterationNumber) => {
+      .iterate((user) => {
         if (
           (user as User).email === email &&
           (user as User).password === password
         ) {
           return user;
         }
+
+        return undefined;
       })
       .then(async (user) => {
         await delay(3000);
