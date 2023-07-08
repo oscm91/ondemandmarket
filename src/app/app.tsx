@@ -47,7 +47,7 @@ export function App() {
         element={
           <PrivateRoute>
             <Page>
-              <EarlyAccess />
+              <EarlyAccess navigator={navigator} />
             </Page>
           </PrivateRoute>
         }
@@ -56,7 +56,9 @@ export function App() {
         path="/"
         element={
           <PublicRoute>
-            <Page>Página raíz</Page>
+            <Page>
+              <EarlyAccess navigator={navigator} />
+            </Page>
           </PublicRoute>
         }
       />
