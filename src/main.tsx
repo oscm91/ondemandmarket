@@ -6,7 +6,7 @@ import { worker } from '@cocodemy/mock-api';
 import './styles.scss';
 import App from './app/app';
 
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'production') {
   worker.start().then((r) => console.log('Start Mock Api'));
 }
 
