@@ -6,7 +6,7 @@
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
-    "chromatic": "npx chromatic --ci --project-token=chpt_3411f24ffca5210 --build-script-name='build-storybook' --output-dir=dist/storybook/cocuy",
+    "chromatic": "npx chromatic --ci --build-script-name='build-storybook' --output-dir=dist/storybook/cocuy",
     "storybook": "nx storybook cocuy",
     "build-storybook": "nx build && nx build-storybook cocuy",
     "postinstall": "cd cocuy && pnpm install"
@@ -78,4 +78,3 @@
     "vitest": "0.32.4"
   }
 }
-

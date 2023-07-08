@@ -1,4 +1,4 @@
-import { Credentials } from "@cocodemy/models";
+import { Credentials, NavigatorState } from '@cocodemy/models';
 import { Button, Flex, Link, TextField, View } from '@adobe/react-spectrum';
 import Email from '@spectrum-icons/workflow/Email';
 import LockClosed from '@spectrum-icons/workflow/LockClosed';
@@ -16,9 +16,10 @@ const LoginSchema = Yup.object().shape({
 
 export interface LoginProps {
   onFormSubmit: (values: Credentials) => void;
+  navigator: NavigatorState;
 }
 
-export function Login({ onFormSubmit }: LoginProps) {
+export function Login({ onFormSubmit, navigator }: LoginProps) {
   return (
     <Formik
       initialValues={{
@@ -80,7 +81,15 @@ export function Login({ onFormSubmit }: LoginProps) {
                 Don't have an account?
                 <br />
                 <Link>
-                  <a href="/signup">Sign up</a>
+                  <a
+                    href="/signup"
+                    onClick={(e) => {
+                      navigator.goToRegister();
+                      e.preventDefault();
+                    }}
+                  >
+                    Sign up
+                  </a>
                 </Link>
               </p>
             </View>

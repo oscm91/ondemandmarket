@@ -14,7 +14,7 @@ import LockClosed from '@spectrum-icons/workflow/LockClosed';
 import React from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { User as UserModel } from '@cocodemy/models';
+import { NavigatorState, User as UserModel } from '@cocodemy/models';
 
 const SignupSchema = Yup.object().shape({
   firstName: Yup.string()
@@ -42,9 +42,10 @@ const SignupSchema = Yup.object().shape({
 /* eslint-disable-next-line */
 export interface SignupProps {
   onFormSubmit: (values: UserModel) => void; // Add this line
+  navigator: NavigatorState;
 }
 
-export function Signup({ onFormSubmit }: SignupProps) {
+export function Signup({ onFormSubmit, navigator }: SignupProps) {
   return (
     <Formik
       initialValues={{
@@ -187,7 +188,15 @@ export function Signup({ onFormSubmit }: SignupProps) {
                 Already have an account?
                 <br />
                 <Link>
-                  <a href="/login">Login</a>
+                  <a
+                    href="/login"
+                    onClick={(e) => {
+                      navigator.goToLogin();
+                      e.preventDefault();
+                    }}
+                  >
+                    Login
+                  </a>
                 </Link>
               </p>
             </View>

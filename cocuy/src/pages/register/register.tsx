@@ -12,6 +12,7 @@ export function Register({ user, navigator }: RegisterProps) {
   return (
     <div className={styles['container']}>
       <Signup
+        navigator={navigator}
         onFormSubmit={(values) => {
           console.log({
             ...values,

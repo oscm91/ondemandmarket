@@ -12,6 +12,7 @@ export function Access({ user, navigator }: AccessProps) {
   return (
     <div className={styles['container']}>
       <Login
+        navigator={navigator}
         onFormSubmit={(values) => {
           console.log({
             ...values,
