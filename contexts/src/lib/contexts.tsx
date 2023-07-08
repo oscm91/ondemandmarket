@@ -54,7 +54,10 @@ interface StateProviderProps {
 const basename = import.meta.env.VITE_APP_BASENAME;
 
 const client = new ApolloClient({
-  uri: basename === '/' ? 'http://localhost:4200/graphql' : 'https://oscm91.github.io/ondemandmarket/graphql', // Reemplaza esto con la URL de tu API GraphQL
+  uri:
+    basename === '/'
+      ? 'http://localhost:4200/graphql'
+      : 'https://oscm91.github.io/ondemandmarket/graphql', // Reemplaza esto con la URL de tu API GraphQL
   cache: new InMemoryCache(),
 });
 

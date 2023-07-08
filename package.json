@@ -5,7 +5,7 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
-    "test": "nx test",
+    "test": "nx run-many --all --target=test",
     "chromatic": "npx chromatic --ci --build-script-name='build-storybook' --output-dir=dist/storybook/cocuy",
     "storybook": "nx storybook cocuy",
     "build-storybook": "nx build && nx build-storybook cocuy",
@@ -51,6 +51,7 @@
     "@types/node": "18.14.2",
     "@types/react": "18.2.13",
     "@types/react-dom": "18.2.6",
+    "@types/react-test-renderer": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "5.61.0",
     "@typescript-eslint/parser": "5.61.0",
     "@vitejs/plugin-react": "4.0.2",
@@ -78,6 +79,7 @@
     "vite-plugin-dts": "2.3.0",
     "vite-plugin-eslint": "^1.8.1",
     "vite-tsconfig-paths": "^4.0.2",
-    "vitest": "0.32.4"
+    "vitest": "0.32.4",
+    "vitest-fetch-mock": "^0.2.2"
   }
 }

@@ -16,7 +16,7 @@ import Bug from '@spectrum-icons/workflow/Bug';
 import Logo from '../../assets/logo.svg';
 import IsoLogo from '../../assets/isologo.svg';
 import VideoThumbnail from '../../assets/video-thumbnail.png';
-import { NavigatorState } from "@cocodemy/models";
+import { NavigatorState } from '@cocodemy/models';
 
 /* eslint-disable-next-line */
 export interface EarlyAccessProps {
@@ -98,7 +98,11 @@ export function EarlyAccess({ navigator }: EarlyAccessProps) {
                   M: 'inline',
                 }}
               />
-              <Button variant="primary" style="fill" onPress={() => navigator.goToRegister?.()}>
+              <Button
+                variant="primary"
+                style="fill"
+                onPress={() => navigator.goToRegister?.()}
+              >
                 <Text>Obtén acceso anticipado</Text>
               </Button>
             </Flex>
@@ -403,7 +407,11 @@ export function EarlyAccess({ navigator }: EarlyAccessProps) {
               plataforma
             </p>
             <View>
-              <Button variant="primary" style="fill" onPress={() => navigator.goToRegister?.()}>
+              <Button
+                variant="primary"
+                style="fill"
+                onPress={() => navigator.goToRegister?.()}
+              >
                 <Text>Obtén acceso anticipado</Text>
               </Button>
             </View>
