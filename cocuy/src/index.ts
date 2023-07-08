@@ -1,3 +1,5 @@
+export * from './pages/access/access';
+export * from './components/loader/loader';
 export * from './pages/register/register';
 export * from './forms/job/job';
 export * from './forms/services/services';

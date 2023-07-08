@@ -2,29 +2,44 @@ import React from 'react';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import styles from './app.module.scss';
 
-import { Page, EarlyAccess, Register } from '@cocodemy/cocuy';
+import { Page, EarlyAccess, Register, Access } from "@cocodemy/cocuy";
 import { StateContext } from '@cocodemy/contexts';
 import { Route, Routes } from 'react-router-dom';
 import { PrivateRoute } from '../utils/components/PrivateRoute';
+import { PublicRoute } from '../utils/components/PublicRoute';
+import { Loader } from '@cocodemy/cocuy';
 
 export function App() {
-  const { user, navigator } = React.useContext(StateContext) || {};
+  const { user, navigator } = React.useContext(StateContext);
+
+  if (!user || (user && user.authChecking) || user.signupLoading) {
+    return (
+      <Page>
+        <Loader />
+      </Page>
+    );
+  }
+
   return (
     <Routes>
       <Route
         path="/signup"
         element={
-          <Page>
-            <Register user={user} navigator={navigator} />
-          </Page>
+          <PublicRoute>
+            <Page>
+              <Register user={user} navigator={navigator} />
+            </Page>
+          </PublicRoute>
         }
       />
       <Route
         path="/login"
         element={
-          <Page>
-            Página login
-          </Page>
+          <PublicRoute>
+            <Page>
+              <Access user={user} navigator={navigator} />
+            </Page>
+          </PublicRoute>
         }
       />
       <Route
@@ -35,15 +50,14 @@ export function App() {
               <EarlyAccess />
             </Page>
           </PrivateRoute>
-
         }
       />
       <Route
         path="/"
         element={
-          <Page>
-            Página raíz
-          </Page>
+          <PublicRoute>
+            <Page>Página raíz</Page>
+          </PublicRoute>
         }
       />
     </Routes>

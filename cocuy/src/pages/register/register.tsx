@@ -4,8 +4,8 @@ import { UserState, NavigatorState } from '@cocodemy/models';
 
 /* eslint-disable-next-line */
 export interface RegisterProps {
-  user: UserState | undefined;
-  navigator: NavigatorState | undefined;
+  user: UserState;
+  navigator: NavigatorState;
 }
 
 export function Register({ user, navigator }: RegisterProps) {
@@ -16,8 +16,8 @@ export function Register({ user, navigator }: RegisterProps) {
           console.log({
             ...values,
           });
-          user?.register(values).then((user) => {
-            navigator?.goToApp();
+          user.register(values).then((user) => {
+            navigator.goToApp();
           });
         }}
       />

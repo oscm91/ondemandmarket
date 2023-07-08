@@ -18,7 +18,15 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk),
 })
 
-export const StateContext = createContext<State | null>(null);
+export const StateContext = createContext<State>({
+  user: {
+    authChecking: true,
+    signupLoading: false,
+  },
+  navigator: {
+    pathname: ''
+  }
+});
 
 interface StoreStateProviderProps {
   children: React.ReactNode;
