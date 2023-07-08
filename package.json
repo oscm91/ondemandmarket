@@ -9,7 +9,7 @@
     "chromatic": "npx chromatic --ci --build-script-name='build-storybook' --output-dir=dist/storybook/cocuy",
     "storybook": "nx storybook cocuy",
     "build-storybook": "nx build && nx build-storybook cocuy",
-    "postinstall": "cd cocuy && npm install",
+    "postinstall": "cd cocuy && pnpm install",
     "deploy": "nx build && gh-pages -d dist/cocodemy"
   },
   "private": true,
