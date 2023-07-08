@@ -1,0 +1,19 @@
+name: 'Chromatic'
+
+on: push
+
+jobs:
+  chromatic-deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install pnpm
+        run: curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
+      - name: Install dependencies
+        run: pnpm install
+      - name: Install dependencies
+        run: cd ..
+      - name: Publish to Chromatic
+        uses: chromaui/action@v1
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}

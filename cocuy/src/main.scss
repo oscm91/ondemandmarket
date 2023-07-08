@@ -1,0 +1,11 @@
+@use "../node_modules/@spectrum-css/vars/dist/spectrum-global.css";
+@use "../node_modules/@spectrum-css/vars/dist/spectrum-medium.css";
+@use "../node_modules/@spectrum-css/vars/dist/spectrum-large.css";
+@use "../node_modules/@spectrum-css/vars/dist/spectrum-light.css";
+@use "../node_modules/@spectrum-css/vars/dist/spectrum-dark.css";
+@use "../node_modules/@spectrum-css/tokens/dist/index.css";
+@use "../node_modules/@spectrum-css/typography/dist/index-vars.css";
+
+.spectrum-global {
+  @extend .spectrum, .spectrum--large, .spectrum--medium;
+}

@@ -1,0 +1,23 @@
+{
+  "name": "@cocodemy/cocuy",
+  "version": "0.0.1",
+  "main": "./index.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./index.mjs",
+      "require": "./index.js"
+    }
+  },
+  "dependencies": {
+    "@adobe/react-spectrum": "^3.27.0",
+    "@spectrum-css/tokens": "^10.1.2",
+    "@spectrum-css/typography": "^5.0.22",
+    "@spectrum-css/vars": "^9.0.8",
+    "@spectrum-icons/workflow": "^4.2.1",
+    "@spectrum-icons/ui": "^3.5.2",
+    "@nx/devkit": "^16.3.2",
+    "formik": "^2.4.2",
+    "yup": "^1.2.0"
+  }
+}

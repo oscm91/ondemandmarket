@@ -1,0 +1,14 @@
+{
+  "name": "@cocodemy/mock-api",
+  "version": "0.0.1",
+  "type": "commonjs",
+  "dependencies": {
+    "@apollo/client": "^3.7.16",
+    "graphql": "^16.7.1",
+    "localforage": "^1.10.0",
+    "msw": "^1.2.2"
+  },
+  "msw": {
+    "workerDirectory": "public"
+  }
+}

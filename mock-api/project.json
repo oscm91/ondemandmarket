@@ -1,0 +1,31 @@
+{
+  "name": "mock-api",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "mock-api/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/mock-api"
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["coverage/mock-api"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../coverage/mock-api"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["mock-api/**/*.ts"]
+      }
+    }
+  },
+  "tags": []
+}

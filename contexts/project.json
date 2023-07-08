@@ -1,0 +1,24 @@
+{
+  "name": "contexts",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "contexts/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["contexts/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["coverage/contexts"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../coverage/contexts"
+      }
+    }
+  }
+}
