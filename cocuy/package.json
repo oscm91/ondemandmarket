@@ -10,12 +10,12 @@
     }
   },
   "dependencies": {
-    "@adobe/react-spectrum": "^3.27.0",
-    "@spectrum-css/tokens": "^10.1.2",
-    "@spectrum-css/typography": "^5.0.22",
+    "@adobe/react-spectrum": "^3.28.0",
+    "@spectrum-css/tokens": "^10.2.1",
+    "@spectrum-css/typography": "^5.0.25",
     "@spectrum-css/vars": "^9.0.8",
-    "@spectrum-icons/workflow": "^4.2.1",
-    "@spectrum-icons/ui": "^3.5.2",
+    "@spectrum-icons/workflow": "^4.2.2",
+    "@spectrum-icons/ui": "^3.5.3",
     "@nx/devkit": "^16.3.2",
     "formik": "^2.4.2",
     "yup": "^1.2.0"

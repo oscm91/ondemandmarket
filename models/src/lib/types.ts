@@ -27,6 +27,7 @@ export interface NavigatorState {
   goToRegister?: () => void;
   goToLogin?: () => void;
   goToApp?: () => void;
+  gotoServices?: () => void;
 }
 
 export interface Credentials {

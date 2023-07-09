@@ -18,7 +18,11 @@ export function Register({ user, navigator }: RegisterProps) {
             ...values,
           });
           user.register?.(values).then((user) => {
-            navigator.goToApp?.();
+            if(user.userType === 'client') {
+              navigator.goToApp?.();
+            } else {
+              navigator.gotoServices?.();
+            }
           });
         }}
       />

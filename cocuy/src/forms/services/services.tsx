@@ -33,8 +33,8 @@ import ViewList from '@spectrum-icons/workflow/ViewList';
 import Settings from '@spectrum-icons/workflow/Settings';
 import Table from '@spectrum-icons/workflow/Table';
 import AddToSelection from '@spectrum-icons/workflow/AddToSelection';
-import * as Yup from 'yup';
 import Book from '@spectrum-icons/workflow/Book';
+import * as Yup from 'yup';
 
 interface Skill {
   id: string;
@@ -51,8 +51,8 @@ interface Cities {
 
 interface ServicesProps {
   onFormSubmit: (values: { [key: string]: Skill }) => void;
-  skills: Skill[];
-  cities: Cities;
+  skills?: Skill[];
+  cities?: Cities;
 }
 
 const skillsList = [
@@ -294,10 +294,15 @@ function SkillSelection({
     },
     {}
   );
+
+  console.log({ skills });
+
   return (
     <View>
       <ListBox
+        aria-label="Skills"
         selectionMode="multiple"
+        items={skills}
         selectedKeys={Object.keys(values)}
         onSelectionChange={(selected) => {
           const newSkills: string[] = [];
@@ -319,13 +324,13 @@ function SkillSelection({
           );
         }}
       >
-        {skills.map((skill) => (
+        {(skill) => (
           <Item key={skill.id} textValue={skill.id}>
             <AddToSelection alignSelf="center" />
             <Text>{skill.id}</Text>
             <Text slot="description">{skill.description}</Text>
           </Item>
-        ))}
+        )}
       </ListBox>
     </View>
   );
@@ -344,6 +349,7 @@ function SkillSettings({
   return (
     <View>
       <ListView
+        aria-label="Skills Settign"
         items={Object.values(values)}
         selectionStyle="highlight"
         selectionMode="multiple"
@@ -391,6 +397,7 @@ function SkillSettings({
                   value={selectedSkill.price}
                 />
                 <ListBox
+                  aria-label="Skills"
                   selectionMode="multiple"
                   selectedKeys={selectedSkill?.cities}
                   onSelectionChange={(selected) => {

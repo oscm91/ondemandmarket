@@ -19,5 +19,8 @@ export const useNavigator = (): NavigatorState => {
     goToRegister: () => {
       navigate('/signup');
     },
+    gotoServices: () => {
+      navigate('/settingServices');
+    },
   };
 };
