@@ -1,6 +1,7 @@
 import {
   Button,
   Flex,
+  Form,
   Link,
   Radio,
   RadioGroup,
@@ -76,132 +77,132 @@ export function Signup({ onFormSubmit, navigator }: SignupProps) {
         handleSubmit,
         isSubmitting,
       }) => (
-        <form onSubmit={handleSubmit}>
-          <Flex direction="column">
-            <TextField
-              icon={<User />}
-              label="First Name"
-              name="firstName"
-              onChange={(value) => setFieldValue('firstName', value)}
-              onBlur={handleBlur}
-              value={values.firstName}
-              validationState={
-                touched.firstName && errors.firstName ? 'invalid' : undefined
-              }
-              errorMessage={touched.firstName && errors.firstName}
-            />
+        <Form
+          labelPosition="top"
+          labelAlign="start"
+          onSubmit={(e) => handleSubmit(e as React.FormEvent<HTMLFormElement>)}
+        >
+          <TextField
+            icon={<User />}
+            label="First Name"
+            name="firstName"
+            onChange={(value) => setFieldValue('firstName', value)}
+            onBlur={handleBlur}
+            value={values.firstName}
+            validationState={
+              touched.firstName && errors.firstName ? 'invalid' : undefined
+            }
+            errorMessage={touched.firstName && errors.firstName}
+          />
 
-            <TextField
-              icon={<User />}
-              label="Last Name"
-              name="lastName"
-              onChange={(value) => setFieldValue('lastName', value)}
-              onBlur={handleBlur}
-              value={values.lastName}
-              validationState={
-                touched.lastName && errors.lastName ? 'invalid' : undefined
-              }
-              errorMessage={touched.lastName && errors.lastName}
-            />
+          <TextField
+            icon={<User />}
+            label="Last Name"
+            name="lastName"
+            onChange={(value) => setFieldValue('lastName', value)}
+            onBlur={handleBlur}
+            value={values.lastName}
+            validationState={
+              touched.lastName && errors.lastName ? 'invalid' : undefined
+            }
+            errorMessage={touched.lastName && errors.lastName}
+          />
 
-            <TextField
-              icon={<DevicePhone />}
-              label="Phone Number"
-              name="phoneNumber"
-              onChange={(value) => setFieldValue('phoneNumber', value)}
-              onBlur={handleBlur}
-              value={values.phoneNumber}
-              validationState={
-                touched.phoneNumber && errors.phoneNumber
-                  ? 'invalid'
-                  : undefined
-              }
-              errorMessage={touched.phoneNumber && errors.phoneNumber}
-            />
+          <TextField
+            icon={<DevicePhone />}
+            label="Phone Number"
+            name="phoneNumber"
+            onChange={(value) => setFieldValue('phoneNumber', value)}
+            onBlur={handleBlur}
+            value={values.phoneNumber}
+            validationState={
+              touched.phoneNumber && errors.phoneNumber ? 'invalid' : undefined
+            }
+            errorMessage={touched.phoneNumber && errors.phoneNumber}
+          />
 
-            <TextField
-              icon={<Email />}
-              type="email"
-              label="Email"
-              name="email"
-              onChange={(value) => setFieldValue('email', value)}
-              onBlur={handleBlur}
-              value={values.email}
-              validationState={
-                touched.email && errors.email ? 'invalid' : undefined
-              }
-              errorMessage={touched.email && errors.email}
-            />
+          <TextField
+            icon={<Email />}
+            type="email"
+            label="Email"
+            name="email"
+            onChange={(value) => setFieldValue('email', value)}
+            onBlur={handleBlur}
+            value={values.email}
+            validationState={
+              touched.email && errors.email ? 'invalid' : undefined
+            }
+            errorMessage={touched.email && errors.email}
+          />
 
-            <TextField
-              icon={<LockClosed />}
-              type="password"
-              label="Password"
-              name="password"
-              onChange={(value) => setFieldValue('password', value)}
-              onBlur={handleBlur}
-              value={values.password}
-              validationState={
-                touched.password && errors.password ? 'invalid' : undefined
-              }
-              errorMessage={touched.password && errors.password}
-            />
+          <TextField
+            icon={<LockClosed />}
+            type="password"
+            label="Password"
+            name="password"
+            onChange={(value) => setFieldValue('password', value)}
+            onBlur={handleBlur}
+            value={values.password}
+            validationState={
+              touched.password && errors.password ? 'invalid' : undefined
+            }
+            errorMessage={touched.password && errors.password}
+          />
 
-            <TextField
-              icon={<LockClosed />}
-              type="password"
-              label="Confirm Password"
-              name="confirmPassword"
-              onChange={(value) => setFieldValue('confirmPassword', value)}
-              onBlur={handleBlur}
-              value={values.confirmPassword}
-              validationState={
-                touched.confirmPassword && errors.confirmPassword
-                  ? 'invalid'
-                  : undefined
-              }
-              errorMessage={touched.confirmPassword && errors.confirmPassword}
-            />
+          <TextField
+            icon={<LockClosed />}
+            type="password"
+            label="Confirm Password"
+            name="confirmPassword"
+            onChange={(value) => setFieldValue('confirmPassword', value)}
+            onBlur={handleBlur}
+            value={values.confirmPassword}
+            validationState={
+              touched.confirmPassword && errors.confirmPassword
+                ? 'invalid'
+                : undefined
+            }
+            errorMessage={touched.confirmPassword && errors.confirmPassword}
+          />
 
-            <RadioGroup
-              label="Registering as"
-              name="type"
-              onChange={(value) => setFieldValue('userType', value)}
-              value={values.userType}
-              validationState={
-                touched.userType && errors.userType ? 'invalid' : undefined
-              }
-              errorMessage={touched.userType && errors.userType}
-            >
-              <Radio value="client">Client</Radio>
-              <Radio value="doer">Doer</Radio>
-            </RadioGroup>
+          <RadioGroup
+            label="Registering as"
+            name="type"
+            onChange={(value) => setFieldValue('userType', value)}
+            value={values.userType}
+            validationState={
+              touched.userType && errors.userType ? 'invalid' : undefined
+            }
+            errorMessage={touched.userType && errors.userType}
+          >
+            <Radio value="client">Client</Radio>
+            <Radio value="doer">Doer</Radio>
+          </RadioGroup>
 
-            <View alignSelf="center">
-              <Button variant="accent" type="submit">
-                Sign up
-              </Button>
-            </View>
-
-            <View>
-              <p>
-                Already have an account?
-                <br />
-                <Link>
-                  <a
-                    href="/login"
-                    onClick={(e) => {
-                      navigator.goToLogin?.();
-                      e.preventDefault();
-                    }}
-                  >
-                    Login
-                  </a>
-                </Link>
-              </p>
-            </View>
+          <Flex justifyContent="center">
+            <Button variant="accent" type="submit">
+              Sign up
+            </Button>
           </Flex>
-        </form>
+
+          <View>
+            <p>
+              Already have an account?
+              <br />
+              <Link>
+                <a
+                  href="/login"
+                  onClick={(e) => {
+                    navigator.goToLogin?.();
+                    e.preventDefault();
+                  }}
+                >
+                  Login
+                </a>
+              </Link>
+            </p>
+          </View>
+        </Form>
       )}
     </Formik>
   );

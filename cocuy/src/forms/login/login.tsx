@@ -1,5 +1,12 @@
 import { Credentials, NavigatorState } from '@cocodemy/models';
-import { Button, Flex, Link, TextField, View } from '@adobe/react-spectrum';
+import {
+  Button,
+  Flex,
+  Form,
+  Link,
+  TextField,
+  View,
+} from '@adobe/react-spectrum';
 import Email from '@spectrum-icons/workflow/Email';
 import LockClosed from '@spectrum-icons/workflow/LockClosed';
 import React from 'react';
@@ -40,61 +47,65 @@ export function Login({ onFormSubmit, navigator }: LoginProps) {
         handleBlur,
         handleSubmit,
       }) => (
-        <form onSubmit={handleSubmit}>
-          <Flex direction="column">
-            <TextField
-              icon={<Email />}
-              type="email"
-              label="Email"
-              name="email"
-              onChange={(value) => setFieldValue('email', value)}
-              onBlur={handleBlur}
-              value={values.email}
-              validationState={
-                touched.email && errors.email ? 'invalid' : undefined
-              }
-              errorMessage={touched.email && errors.email}
-            />
+        <Form
+          labelPosition="top"
+          labelAlign="start"
+          onSubmit={(e) => handleSubmit(e as React.FormEvent<HTMLFormElement>)}
+        >
+          <TextField
+            icon={<Email />}
+            type="email"
+            label="Email"
+            name="email"
+            onChange={(value) => setFieldValue('email', value)}
+            onBlur={handleBlur}
+            value={values.email}
+            validationState={
+              touched.email && errors.email ? 'invalid' : undefined
+            }
+            errorMessage={touched.email && errors.email}
+          />
 
-            <TextField
-              icon={<LockClosed />}
-              type="password"
-              label="Password"
-              name="password"
-              onChange={(value) => setFieldValue('password', value)}
-              onBlur={handleBlur}
-              value={values.password}
-              validationState={
-                touched.password && errors.password ? 'invalid' : undefined
-              }
-              errorMessage={touched.password && errors.password}
-            />
+          <TextField
+            icon={<LockClosed />}
+            type="password"
+            label="Password"
+            name="password"
+            onChange={(value) => setFieldValue('password', value)}
+            onBlur={handleBlur}
+            value={values.password}
+            validationState={
+              touched.password && errors.password ? 'invalid' : undefined
+            }
+            errorMessage={touched.password && errors.password}
+          />
 
+          <Flex justifyContent="center">
             <View alignSelf="center" paddingTop="size-100">
               <Button variant="accent" type="submit">
                 Login
               </Button>
             </View>
-
-            <View>
-              <p>
-                Don't have an account?
-                <br />
-                <Link>
-                  <a
-                    href="/signup"
-                    onClick={(e) => {
-                      navigator.goToRegister?.();
-                      e.preventDefault();
-                    }}
-                  >
-                    Sign up
-                  </a>
-                </Link>
-              </p>
-            </View>
           </Flex>
-        </form>
+
+          <View>
+            <p>
+              Don't have an account?
+              <br />
+              <Link>
+                <a
+                  href="/signup"
+                  onClick={(e) => {
+                    navigator.goToRegister?.();
+                    e.preventDefault();
+                  }}
+                >
+                  Sign up
+                </a>
+              </Link>
+            </p>
+          </View>
+        </Form>
       )}
     </Formik>
   );
