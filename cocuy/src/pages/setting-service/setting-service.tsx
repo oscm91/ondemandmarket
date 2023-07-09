@@ -12,14 +12,11 @@ export function SettingService({ user, navigator }: SettingServiceProps) {
   return (
     <div className={styles['container']}>
       <Services
+        initialSkills={user.skills}
         onFormSubmit={(values) => {
-          console.log({
-            ...values,
-          });
-          debugger
-          /*user.settingServices?.(values).then((user) => {
+          user.updateSkills?.(values).then((user) => {
             navigator.goToApp?.();
-          });*/
+          });
         }}
       />
     </div>

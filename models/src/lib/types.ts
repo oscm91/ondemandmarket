@@ -6,11 +6,15 @@ export interface User {
   email: string;
   password: string;
   confirmPassword: string;
-  userType: string;
+  userType: 'doer' | 'client' | '';
 }
 
 export interface UserStore extends User {
   _: string;
+}
+
+export interface SkillStore {
+  items?: Skill[];
 }
 
 export interface UserState {
@@ -20,6 +24,8 @@ export interface UserState {
   loginLoading: boolean;
   register?: (user: User) => Promise<User>;
   login?: (credential: Credentials) => Promise<User>;
+  updateSkills?: (skills: Skill[]) => Promise<Skill[]>;
+  skills?: { [key: string]: Skill };
 }
 export interface NavigatorState {
   pathname: string;
@@ -38,4 +44,17 @@ export interface Credentials {
 export interface State {
   user: UserState;
   navigator: NavigatorState;
+}
+
+export interface Skill {
+  id: string;
+  name: string;
+  description: string;
+  category: string[];
+  price?: number;
+  cities?: string[];
+}
+
+export interface Cities {
+  [key: string]: string;
 }

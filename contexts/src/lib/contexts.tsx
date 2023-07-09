@@ -6,7 +6,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import thunk from 'redux-thunk';
 
 import { State } from '@cocodemy/models';
-import { userSlice } from '@cocodemy/reducers';
+import { userSlice, skillSlice } from '@cocodemy/reducers';
 
 import { useUser } from './user/hook';
 import { useNavigator } from './navigator/hook';
@@ -14,6 +14,7 @@ import { useNavigator } from './navigator/hook';
 export const store = configureStore({
   reducer: {
     user: userSlice.reducer,
+    skills: skillSlice.reducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk),
 });

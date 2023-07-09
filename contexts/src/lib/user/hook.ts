@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { UserState, UserStore, Credentials } from '@cocodemy/models';
-import { addUser } from '@cocodemy/reducers';
+import { UserState, UserStore, Credentials, Skill, SkillStore } from "@cocodemy/models";
+import { addUser, settingSkills } from '@cocodemy/reducers';
 import Cookies from 'js-cookie';
 
 import { gql, useLazyQuery, useMutation } from '@apollo/client';
@@ -36,12 +36,22 @@ const SIGNUP_MUTATION = gql`
 const LOGIN_MUTATION = gql`
   mutation Login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
-      id
-      firstName
-      lastName
-      phoneNumber
-      email
-      userType
+      user {
+        id
+        firstName
+        lastName
+        phoneNumber
+        email
+        userType
+      }
+      skills {
+        id
+        name
+        description
+        category
+        price
+        cities
+      }
     }
   }
 `;
@@ -49,12 +59,35 @@ const LOGIN_MUTATION = gql`
 const USER_QUERY = gql`
   query User($id: ID!) {
     user(id: $id) {
+      user {
+        id
+        firstName
+        lastName
+        phoneNumber
+        email
+        userType
+      }
+      skills {
+        id
+        name
+        description
+        category
+        price
+        cities
+      }
+    }
+  }
+`;
+
+const UPDATE_SKILLS_MUTATION = gql`
+  mutation UpdateSkills($userId: ID!, $skills: [SkillInput]!) {
+    updateSkills(userId: $userId, skills: $skills) {
       id
-      firstName
-      lastName
-      phoneNumber
-      email
-      userType
+      name
+      description
+      category
+      price
+      cities
     }
   }
 `;
@@ -66,8 +99,18 @@ export const useUser = (): UserState => {
   const [login, { data: loginData, loading: loginLoading, error: loginError }] =
     useMutation(LOGIN_MUTATION);
   const [getUser, { data: userData }] = useLazyQuery(USER_QUERY);
+  const [updateSkills, { data: skillsData, loading: skillsLoading, error: skillsError }] =
+    useMutation(UPDATE_SKILLS_MUTATION);
   const dispatch = useDispatch();
   const user = useSelector((store: { user: UserStore }) => store.user);
+  const skills = useSelector((store: { skills: SkillStore }) => {
+    return (store.skills.items || []).reduce((result, item) => {
+      return {
+        ...result,
+        [item.id]: item,
+      };
+    }, {});
+  });
 
   useEffect(() => {
     const userId = Cookies.get('userId');
@@ -84,6 +127,10 @@ export const useUser = (): UserState => {
       dispatch(addUser(userData.user));
       setAuthChecking(false);
     }
+
+    if(userData && userData.skills && userData.skills.length) {
+      dispatch(settingSkills(userData.skills));
+    }
   }, [dispatch, userData]);
 
   return {
@@ -91,6 +138,7 @@ export const useUser = (): UserState => {
     signupLoading,
     loginLoading,
     info: user,
+    skills,
     register: (newUser) => {
       return signup({ variables: newUser })
         .then((response) => {
@@ -107,9 +155,27 @@ export const useUser = (): UserState => {
       return login({ variables: credentials })
         .then((response) => {
           console.log(response.data);
-          dispatch(addUser(response.data.login));
-          Cookies.set('userId', response.data.login.id);
-          return response.data.login;
+          dispatch(addUser(response.data.user));
+          dispatch(settingSkills(response.data.skills));
+          Cookies.set('userId', response.data.user.id);
+          return response.data.user;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    updateSkills: (skills: Skill[]) => {
+      const userId = Cookies.get('userId'); // Obtén el ID del usuario actual
+      if (!userId) {
+        console.error('No user ID found');
+        return Promise.resolve([]);
+      }
+
+      return updateSkills({ variables: { userId, skills } }) // Envía el ID del usuario y las habilidades
+        .then((response) => {
+          console.log(response.data);
+          dispatch(settingSkills(response.data.skills)); // Usa la acción para actualizar el estado
+          return response.data.skills;
         })
         .catch((error) => {
           console.error(error);

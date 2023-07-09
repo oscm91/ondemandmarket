@@ -56,7 +56,7 @@ export function App() {
         path="/settingServices"
         element={
           <PrivateRoute>
-            <Page>
+            <Page wrap>
               <SettingService user={user} navigator={navigator} />
             </Page>
           </PrivateRoute>

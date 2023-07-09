@@ -9,11 +9,22 @@ import {
 
 export interface PageProps {
   children: React.ReactNode;
+  wrap?: boolean;
 }
-export function Page(props: PageProps) {
+export function Page({ children, wrap = false }: PageProps) {
   return (
     <Provider theme={defaultTheme}>
-      <Flex width="100vw" minHeight="100vh" alignItems="center">
+      <Flex
+        width="100vw"
+        minHeight="100vh"
+        alignItems="center"
+        {...(wrap
+          ? {
+              alignContent: 'start',
+              wrap: 'wrap',
+            }
+          : {})}
+      >
         <View
           margin="auto"
           width={{
@@ -24,7 +35,7 @@ export function Page(props: PageProps) {
             XXL: '1536px',
           }}
         >
-          {props.children}
+          {children}
         </View>
       </Flex>
     </Provider>

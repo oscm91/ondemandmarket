@@ -1,7 +1,7 @@
-import { mockApi } from './mock-api';
+import { worker } from './mock-api';
 
 describe('mockApi', () => {
   it('should work', () => {
-    expect(mockApi()).toEqual('mock-api');
+    expect(worker).toBeTruthy();
   });
 });

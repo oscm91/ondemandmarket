@@ -8,6 +8,9 @@
     "localforage": "^1.10.0",
     "msw": "^1.2.2"
   },
+  "devDependencies": {
+    "@nx/devkit": "^16.3.2"
+  },
   "msw": {
     "workerDirectory": "public"
   }

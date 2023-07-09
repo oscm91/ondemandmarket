@@ -1,9 +1,13 @@
 import { setupWorker, graphql } from 'msw';
 import localForage from 'localforage';
-import { User } from '@cocodemy/models';
+import { User, Skill } from '@cocodemy/models';
 
 const userStore = localForage.createInstance({
   name: 'userStore',
+});
+
+const skillStore = localForage.createInstance({
+  name: 'skillStore',
 });
 
 function delay(ms: number) {
@@ -28,12 +32,15 @@ export const worker = setupWorker(
       userType,
     };
 
+    const skills: Skill[] = [];
+
     // Almacenar el usuario en IndexedDB con la ID como clave
     return userStore.setItem(id, user).then(async () => {
       await delay(3000);
       return res(
         ctx.data({
           user,
+          skills,
         })
       );
     });
@@ -58,15 +65,35 @@ export const worker = setupWorker(
         await delay(3000);
 
         if (user) {
+          if ((user as User).userType === 'doer') {
+            const skills = await skillStore.getItem((user as User).id);
+
+            return res(
+              ctx.data({ user, skills })
+            );
+          }
+
           return res(
-            ctx.data({
-              login: user,
-            })
+            ctx.data({ user, skills: [] })
           );
         } else {
           return res(ctx.errors([{ message: 'Invalid email or password' }]));
         }
       });
+  }),
+
+  graphql.mutation('UpdateSkills', (req, res, ctx) => {
+    const { skills, userId } = req.variables;
+
+    // Almacenar las habilidades en IndexedDB con el ID del usuario como clave
+    return skillStore.setItem(userId, skills).then(async () => {
+      await delay(3000);
+      return res(
+        ctx.data({
+          skills,
+        })
+      );
+    });
   }),
 
   graphql.query('User', (req, res, ctx) => {
@@ -77,9 +104,20 @@ export const worker = setupWorker(
       await delay(3000);
 
       if (user) {
+        if ((user as User).userType === 'doer') {
+          const skills = await skillStore.getItem(id);
+          return res(
+            ctx.data({
+              user,
+              skills,
+            })
+          );
+        }
+
         return res(
           ctx.data({
             user,
+            skills: []
           })
         );
       } else {

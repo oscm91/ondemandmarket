@@ -34,23 +34,13 @@ import Settings from '@spectrum-icons/workflow/Settings';
 import Table from '@spectrum-icons/workflow/Table';
 import AddToSelection from '@spectrum-icons/workflow/AddToSelection';
 import Book from '@spectrum-icons/workflow/Book';
+import Alert from '@spectrum-icons/workflow/Alert';
 import * as Yup from 'yup';
-
-interface Skill {
-  id: string;
-  name: string;
-  description: string;
-  category: string[];
-  price?: number;
-  cities?: string[];
-}
-
-interface Cities {
-  [key: string]: string;
-}
+import { Cities, Skill } from "@cocodemy/models";
 
 interface ServicesProps {
-  onFormSubmit: (values: { [key: string]: Skill }) => void;
+  onFormSubmit: (values: Skill[]) => void;
+  initialSkills?: { [key: string]: Skill };
   skills?: Skill[];
   cities?: Cities;
 }
@@ -261,20 +251,27 @@ const citiesList = {
   RIO: 'Riohacha',
 };
 
-const SkillsSchema = Yup.object()
-  .shape({
-    id: Yup.string().required('Required'),
-    name: Yup.string().required('Required'),
-    description: Yup.string().required('Required'),
-    price: Yup.number().positive().required('Required'),
-    cities: Yup.array()
-      .of(Yup.string().required('Required'))
-      .required('At least one city is required'),
-    category: Yup.array()
-      .of(Yup.string().required('Required'))
-      .required('At least one category is required'),
-  })
-  .required('At least one skill is required');
+const SkillSchema = Yup.object().shape({
+  id: Yup.string().required('Id Required'),
+  name: Yup.string().required('Name Required'),
+  description: Yup.string().required('Description Required'),
+  category: Yup.array()
+    .of(Yup.string().required('Category Required'))
+    .required('At least one category is required'),
+  cities: Yup.array()
+    .of(Yup.string().required('City Required'))
+    .required('At least one city is required'),
+  price: Yup.number().positive().required('Required'),
+});
+
+const FormSchema = Yup.lazy((value: { [key: string]: Skill }) =>
+  Yup.object().shape(
+    Object.keys(value).reduce((shape: { [key: string]: Yup.Schema }, key: string) => {
+      shape[key] = SkillSchema;
+      return shape;
+    }, {})
+  ).required('At least one skill is required')
+);
 
 function SkillSelection({
   values,
@@ -294,8 +291,6 @@ function SkillSelection({
     },
     {}
   );
-
-  console.log({ skills });
 
   return (
     <View>
@@ -465,14 +460,17 @@ export function Services({
   onFormSubmit,
   skills = skillsList,
   cities = citiesList,
+  initialSkills = {}
 }: ServicesProps) {
   return (
     <Formik
-      initialValues={{}}
-      validationSchema={SkillsSchema}
-      onSubmit={onFormSubmit}
+      initialValues={initialSkills}
+      validationSchema={FormSchema}
+      onSubmit={(values: { [key: string]: Skill }) => {
+        onFormSubmit(Object.values(values))
+      }}
     >
-      {({ values, setValues, setFieldValue, handleSubmit }) => (
+      {({ values, setValues, setFieldValue, handleSubmit, errors }) => (
         <Form
           onSubmit={(e) => handleSubmit(e as React.FormEvent<HTMLFormElement>)}
         >
@@ -505,6 +503,23 @@ export function Services({
               </Item>
               <Item key="summary" textValue="Skill Summary Content">
                 <SkillSummary values={values} />
+                {Object.keys(errors).length > 0 && (
+                  <View>
+                    <Heading level={3}>Errors</Heading>
+                    <ListBox aria-label="Errors">
+                      {Object.keys(errors).map((errorKey) => (
+                        <Section title={errorKey}>
+                          {Object.keys(errors[errorKey]).map((errorItemKey) => (
+                            <Item key={errorItemKey} textValue={errorItemKey}>
+                              <Alert />
+                              <Text>{errorItemKey} : {errors[errorKey][errorItemKey]}</Text>
+                            </Item>
+                          ))}
+                        </Section>
+                      ))}
+                    </ListBox>
+                  </View>
+                )}
                 <Flex justifyContent="center">
                   <Button variant="accent" type="submit" marginTop="size-100">
                     Sign up
