@@ -38,6 +38,8 @@ export const StateContext = createContext<State>({
   notifications: {
     list: [],
     notificationsLoading: false,
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    refreshNotifications: () => {},
   },
 });
 

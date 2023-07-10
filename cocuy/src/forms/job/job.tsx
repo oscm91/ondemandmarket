@@ -444,7 +444,7 @@ function SkillSettings({
   values: { [key: string]: Service };
   setFieldValue: (key: string, value: any) => void;
   cities: Cities;
-  doersByService?: {
+  doersByService: {
     [key: string]: Service;
   };
 }) {
@@ -511,39 +511,44 @@ function SkillSettings({
                   onSelectionChange={(selected) => {
                     const newDoers = [];
 
-                    const doersById =
-                      doersByService &&
-                      doersByService[selectedSkill?.id] &&
-                      doersByService[selectedSkill?.id].doers
-                        ? doersByService[selectedSkill?.id].doers.reduce(
-                            (result, doer) => {
-                              return {
-                                ...result,
-                                [doer.id]: doer,
-                              };
-                            },
-                            {}
-                          )
-                        : {};
+                    const doersById = doersByService
+                      ? // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                        // @ts-ignore
+                        doersByService[selectedSkill?.id].doers.reduce(
+                          (result, doer) => {
+                            return {
+                              ...result,
+                              [doer.id]: doer,
+                            };
+                          },
+                          {}
+                        )
+                      : {};
 
                     for (const newDoerId of selected) {
+                      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                      // @ts-ignore
                       newDoers.push(doersById[newDoerId]);
                     }
 
                     setFieldValue(`${selectedSkill.id}.doers`, newDoers);
                   }}
                 >
-                  {doersByService[selectedSkill?.id].doers.map((item) => (
-                    <Item key={item.id} textValue={item.firstName}>
-                      <Text>
-                        Propose to {item.firstName} {item.lastName}
-                      </Text>
-                      <Text slot="description">
-                        for {item.price} in this cities:{' '}
-                        {(item.cities || []).join(',')}
-                      </Text>
-                    </Item>
-                  ))}
+                  {
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-ignore
+                    doersByService[selectedSkill?.id].doers.map((item) => (
+                      <Item key={item.id} textValue={item.firstName}>
+                        <Text>
+                          Propose to {item.firstName} {item.lastName}
+                        </Text>
+                        <Text slot="description">
+                          for {item.price} in this cities:{' '}
+                          {(item.cities || []).join(',')}
+                        </Text>
+                      </Item>
+                    ))
+                  }
                 </ListView>
               </Content>
               <ButtonGroup>
@@ -586,21 +591,28 @@ function SkillSummary({ values }: { values: { [key: string]: Service } }) {
               <Cell>{skillId}</Cell>
               <Cell>
                 <Flex gap="size-100">
-                  {values[skillId].doers.map((doer, i) => {
-                    return (
-                      <>
-                        {i === 0 ? null : (
-                          <Divider size="S" orientation="vertical" />
-                        )}
+                  {
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-ignore
+                    values[skillId].doers.map((doer, i) => {
+                      return (
+                        <>
+                          {i === 0 ? null : (
+                            <Divider size="S" orientation="vertical" />
+                          )}
 
-                        <LabeledValue
-                          label={`Price for ${doer.firstName} ${doer.lastName}`}
-                          value={doer.price}
-                          formatOptions={{ style: 'currency', currency: 'COP' }}
-                        />
-                      </>
-                    );
-                  })}
+                          <LabeledValue
+                            label={`Price for ${doer.firstName} ${doer.lastName}`}
+                            value={doer.price}
+                            formatOptions={{
+                              style: 'currency',
+                              currency: 'COP',
+                            }}
+                          />
+                        </>
+                      );
+                    })
+                  }
                 </Flex>
               </Cell>
               <Cell>
@@ -613,20 +625,24 @@ function SkillSummary({ values }: { values: { [key: string]: Service } }) {
               </Cell>
               <Cell>
                 <Flex gap="size-100">
-                  {values[skillId]?.doers.map((doer, i) => {
-                    return (
-                      <>
-                        {i === 0 ? null : (
-                          <Divider size="S" orientation="vertical" />
-                        )}
-                        <TagGroup aria-label="Cities">
-                          {doer.cities.map((city) => {
-                            return <Item textValue={city}>{city}</Item>;
-                          })}
-                        </TagGroup>
-                      </>
-                    );
-                  })}
+                  {
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-ignore
+                    values[skillId]?.doers.map((doer, i) => {
+                      return (
+                        <>
+                          {i === 0 ? null : (
+                            <Divider size="S" orientation="vertical" />
+                          )}
+                          <TagGroup aria-label="Cities">
+                            {doer.cities.map((city) => {
+                              return <Item textValue={city}>{city}</Item>;
+                            })}
+                          </TagGroup>
+                        </>
+                      );
+                    })
+                  }
                 </Flex>
               </Cell>
             </Row>
@@ -645,7 +661,7 @@ export function Job({
 }: JobProps) {
   const [doersByService, setDoersByService] = React.useState<{
     [key: string]: Service;
-  }>();
+  }>({});
 
   const [tabSelected, setTabSelected] = React.useState('selection');
 
