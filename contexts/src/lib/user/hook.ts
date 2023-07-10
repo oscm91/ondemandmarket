@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { UserState, UserStore, Credentials, Skill, SkillStore } from "@cocodemy/models";
-import { addUser, settingSkills } from '@cocodemy/reducers';
+import { addUser, settingSkills, resetSkills, resetUser } from '@cocodemy/reducers';
 import Cookies from 'js-cookie';
 
 import { gql, useLazyQuery, useMutation } from '@apollo/client';
@@ -154,6 +154,8 @@ export const useUser = (): UserState => {
     },
     logout: () => {
       Cookies.remove('userId');
+      dispatch(resetSkills());
+      dispatch(resetUser());
       return Promise.resolve(true);
     },
     login: (credentials: Credentials) => {

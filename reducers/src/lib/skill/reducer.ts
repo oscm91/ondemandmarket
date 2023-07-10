@@ -12,8 +12,11 @@ export const skillSlice = createSlice({
         items: skills,
       }
     },
+    resetSkills: (state, action: PayloadAction<undefined>) => {
+      return {} as SkillStore;
+    },
   },
 });
 
-export const { settingSkills } = skillSlice.actions;
+export const { settingSkills, resetSkills } = skillSlice.actions;
 export default skillSlice.reducer;

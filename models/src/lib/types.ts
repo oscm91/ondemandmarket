@@ -49,6 +49,7 @@ export interface Credentials {
 export interface State {
   user: UserState;
   navigator: NavigatorState;
+  service: ServiceState;
 }
 
 export interface Skill {
@@ -58,8 +59,37 @@ export interface Skill {
   category: string[];
   price?: number;
   cities?: string[];
+  date?: number;
+  doers?: string[];
 }
 
 export interface Cities {
   [key: string]: string;
+}
+
+export interface Doer {
+  id: string;
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  email: string;
+  price: number;
+  cities: string[];
+}
+
+export interface Service {
+  id: string;
+  name: string;
+  description: string;
+  category: string[];
+  date: number;
+  cities: string[];
+  doers?: Doer[];
+}
+
+export interface ServiceState {
+  services?: { [key: string]: Service };
+  servicesLoading: boolean;
+  getServiceBySkills?: (skills: Service[]) => Promise<Service[]>;
+  createServices?: (skills: Service[]) => Promise<Service[]>;
 }

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { User, UserStore } from '@cocodemy/models';
+import { Skill, User, UserStore } from "@cocodemy/models";
 
 export const userSlice = createSlice({
   name: 'user',
@@ -12,8 +12,11 @@ export const userSlice = createSlice({
         ...state,
       };
     },
+    resetUser: (state, action: PayloadAction<undefined>) => {
+      return {} as UserStore;
+    },
   },
 });
 
-export const { addUser } = userSlice.actions;
+export const { addUser, resetUser } = userSlice.actions;
 export default userSlice.reducer;

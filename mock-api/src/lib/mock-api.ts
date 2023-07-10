@@ -1,6 +1,6 @@
 import { setupWorker, graphql } from 'msw';
 import localForage from 'localforage';
-import { User, Skill } from '@cocodemy/models';
+import { User, Skill, Service } from '@cocodemy/models';
 
 const userStore = localForage.createInstance({
   name: 'userStore',
@@ -8,6 +8,10 @@ const userStore = localForage.createInstance({
 
 const skillStore = localForage.createInstance({
   name: 'skillStore',
+});
+
+const serviceStore = localForage.createInstance({
+  name: 'serviceStore',
 });
 
 function delay(ms: number) {
@@ -36,7 +40,7 @@ export const worker = setupWorker(
 
     // Almacenar el usuario en IndexedDB con la ID como clave
     return userStore.setItem(id, user).then(async () => {
-      await delay(3000);
+      await delay(1000);
       return res(
         ctx.data({
           user,
@@ -62,20 +66,16 @@ export const worker = setupWorker(
         return undefined;
       })
       .then(async (user) => {
-        await delay(3000);
+        await delay(1000);
 
         if (user) {
           if ((user as User).userType === 'doer') {
             const skills = await skillStore.getItem((user as User).id);
 
-            return res(
-              ctx.data({ user, skills })
-            );
+            return res(ctx.data({ user, skills }));
           }
 
-          return res(
-            ctx.data({ user, skills: [] })
-          );
+          return res(ctx.data({ user, skills: [] }));
         } else {
           return res(ctx.errors([{ message: 'Invalid email or password' }]));
         }
@@ -87,7 +87,7 @@ export const worker = setupWorker(
 
     // Almacenar las habilidades en IndexedDB con el ID del usuario como clave
     return skillStore.setItem(userId, skills).then(async () => {
-      await delay(3000);
+      await delay(1000);
       return res(
         ctx.data({
           skills,
@@ -101,7 +101,7 @@ export const worker = setupWorker(
 
     // Recuperar el usuario de IndexedDB
     return userStore.getItem(id).then(async (user) => {
-      await delay(3000);
+      await delay(1000);
 
       if (user) {
         if ((user as User).userType === 'doer') {
@@ -117,14 +117,101 @@ export const worker = setupWorker(
         return res(
           ctx.data({
             user,
-            skills: []
+            skills: [],
           })
         );
       } else {
         return res(ctx.errors([{ message: 'User not found' }]));
       }
     });
-  })
+  }),
+
+  graphql.query('GetServicesBySkills', async (req, res, ctx) => {
+    const { services } = req.variables;
+    const servicesInfo: { [key: string]: Service } = (
+      services as Service[]
+    ).reduce((result, service) => {
+      return {
+        ...result,
+        [service.id]: service,
+      };
+    }, {});
+    const serviceIds = (services as Service[]).map((skill) => skill.id);
+
+    const users: { [key: string]: User } = {};
+    await userStore.iterate((user, userId) => {
+      users[userId] = user as User;
+    });
+
+    // Recuperar todas las habilidades de IndexedDB y filtrar las que coinciden con las habilidades proporcionadas
+    await skillStore.iterate((storedSkill, userId) => {
+      const skillsIds = (storedSkill as Skill[]).map((skill) => skill.id);
+      const skillsByIds: { [key: string]: Skill } = (
+        storedSkill as Skill[]
+      ).reduce((result, skill) => {
+        return {
+          ...result,
+          [skill.id]: skill,
+        };
+      }, {});
+      if (serviceIds.some((item) => skillsIds.includes(item))) {
+        serviceIds.forEach((serviceId) => {
+          if (skillsIds.includes(serviceId)) {
+            const doer: User = users[userId];
+            const price = skillsByIds[serviceId].price;
+            const cities = servicesInfo[serviceId].cities
+              ? (servicesInfo[serviceId].cities || []).some((item) =>
+                  (skillsByIds[serviceId].cities || []).includes(item)
+                )
+              : true;
+
+            if (price && cities) {
+              servicesInfo[serviceId].doers = (
+                servicesInfo[serviceId].doers || []
+              ).concat({
+                id: doer.id,
+                firstName: doer.firstName,
+                lastName: doer.lastName,
+                phoneNumber: doer.phoneNumber,
+                email: doer.email,
+                price: price,
+                cities: skillsByIds[serviceId].cities || [],
+              });
+            }
+          }
+        });
+      }
+      return undefined;
+    });
+
+    await delay(1000);
+
+    return res(
+      ctx.data({
+        services: Object.values(servicesInfo),
+      })
+    );
+  }),
+
+  graphql.mutation('CreateServices', (req, res, ctx) => {
+    const { services } = req.variables;
+
+    // Almacenar los servicios en IndexedDB con un ID aleatorio como clave
+    const promises = services.map((service: Service) => {
+      const id = Math.random().toString(36).substr(2, 9);
+      return serviceStore.setItem(id, service);
+    });
+
+    return Promise.all(promises).then(async () => {
+      await delay(1000);
+      return res(
+        ctx.data({
+          services,
+        })
+      );
+    });
+  }),
+
 );
 
 export default worker;

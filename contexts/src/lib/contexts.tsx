@@ -10,6 +10,7 @@ import { userSlice, skillSlice } from '@cocodemy/reducers';
 
 import { useUser } from './user/hook';
 import { useNavigator } from './navigator/hook';
+import { useService } from './service/hook';
 
 export const store = configureStore({
   reducer: {
@@ -29,6 +30,9 @@ export const StateContext = createContext<State>({
   navigator: {
     pathname: '',
   },
+  service: {
+    servicesLoading: false,
+  }
 });
 
 interface StoreStateProviderProps {
@@ -38,10 +42,11 @@ interface StoreStateProviderProps {
 export function StoreStateProvider({ children }: StoreStateProviderProps) {
   const user = useUser();
   const navigator = useNavigator();
+  const service = useService();
 
   const storeState: State = useMemo(
-    () => ({ user, navigator }),
-    [user, navigator]
+    () => ({ user, navigator, service }),
+    [user, navigator, service]
   );
 
   return (

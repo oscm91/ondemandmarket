@@ -1,17 +1,18 @@
-import styles from "./setting-service.module.scss";
-import { NavigatorState, UserState } from "@cocodemy/models";
-import Services from "../../forms/services/services";
+import styles from "./order-service.module.scss";
+import { NavigatorState, ServiceState, UserState } from "@cocodemy/models";
+import Job from "../../forms/job/job";
 import { Content, Divider, Flex, Heading, IllustratedMessage, View } from "@adobe/react-spectrum";
 import Upload from "@spectrum-icons/illustrations/Upload";
 import { Header } from "../../components/header/header";
 
 /* eslint-disable-next-line */
-export interface SettingServiceProps {
+export interface OrderServiceProps {
   user: UserState;
   navigator: NavigatorState;
+  service: ServiceState
 }
 
-export function SettingService({ user, navigator }: SettingServiceProps) {
+export function OrderService({ user, navigator, service }: OrderServiceProps) {
   return (
     <div className={styles['container']}>
       <Flex direction="column" gap="size-100">
@@ -19,7 +20,7 @@ export function SettingService({ user, navigator }: SettingServiceProps) {
           <Header
             breadcrumbs={[
               { key: 'home', text: 'Home' },
-              { key: 'skill', text: 'Skills' },
+              { key: 'orders', text: 'Orders' },
             ]}
             navigator={navigator}
             user={user}
@@ -29,17 +30,17 @@ export function SettingService({ user, navigator }: SettingServiceProps) {
         <View>
           <IllustratedMessage>
             <Upload />
-            <Heading>Complete Your Skill </Heading>
+            <Heading>Create a New Service Request</Heading>
             <Content>
-              Select a edit skills
+              Select services
             </Content>
           </IllustratedMessage>
         </View>
-        <Services
-          initialSkills={user.skills}
+        <Job
+          service={service}
           onFormSubmit={(values) => {
-            user.updateSkills?.(values).then((user) => {
-              navigator.goToProfile?.();
+            service.createServices?.(values).then((user) => {
+              navigator.goToNotifications?.();
             });
           }}
         />
@@ -48,4 +49,4 @@ export function SettingService({ user, navigator }: SettingServiceProps) {
   );
 }
 
-export default SettingService;
+export default OrderService;
