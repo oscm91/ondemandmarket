@@ -52,7 +52,11 @@ export const useService = (): ServiceState => {
 
   const [
     mutationCreateServices,
-    { data: createServicesData, loading: createServicesLoading, error: createServicesError },
+    {
+      data: createServicesData,
+      loading: createServicesLoading,
+      error: createServicesError,
+    },
   ] = useMutation(CREATE_SERVICES_MUTATION);
 
   const getServiceBySkills = (servicesInfo: Service[]) => {

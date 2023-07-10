@@ -10,7 +10,7 @@ export const skillSlice = createSlice({
       return {
         ...state,
         items: skills,
-      }
+      };
     },
     resetSkills: (state, action: PayloadAction<undefined>) => {
       return {} as SkillStore;

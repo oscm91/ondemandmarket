@@ -218,18 +218,38 @@ export const worker = setupWorker(
         const notifications: Notification[] =
           (await notificationStore.getItem(id)) || [];
         const newNotifications = services.map((service: Service) => {
-          const doerNames = (service.doers || []).map(doer => `${doer.firstName} ${doer.lastName}`).join(', ');
-          const doerCities = [...new Set((service.doers || []).flatMap(doer => doer.cities))].join(', ');
+          const doerNames = (service.doers || [])
+            .map((doer) => `${doer.firstName} ${doer.lastName}`)
+            .join(', ');
+          const doerCities = [
+            ...new Set((service.doers || []).flatMap((doer) => doer.cities)),
+          ].join(', ');
           return {
             serviceId: service.id,
             serviceName: service.name,
-            doerName: id === userId ? doerNames : `${(service.doers || []).find(doer => doer.id === id)?.firstName} ${(service.doers || []).find(doer => doer.id === id)?.lastName}`,
+            doerName:
+              id === userId
+                ? doerNames
+                : `${
+                    (service.doers || []).find((doer) => doer.id === id)
+                      ?.firstName
+                  } ${
+                    (service.doers || []).find((doer) => doer.id === id)
+                      ?.lastName
+                  }`,
             serviceCategories: service.category,
             serviceDate: service.date,
             serviceDescription: service.description,
-            serviceLocation: id === userId ? doerCities : ((service.doers || []).find((doer: Doer) => doer.id === id)?.cities || []).join(', '),
+            serviceLocation:
+              id === userId
+                ? doerCities
+                : (
+                    (service.doers || []).find((doer: Doer) => doer.id === id)
+                      ?.cities || []
+                  ).join(', '),
             servicePrice:
-              (service.doers || []).find((doer: Doer) => doer.id === id)?.price || 0,
+              (service.doers || []).find((doer: Doer) => doer.id === id)
+                ?.price || 0,
             serviceStatus: 'Confirmed',
           };
         });
@@ -245,7 +265,7 @@ export const worker = setupWorker(
           services,
         })
       );
-    })
+    });
   }),
 
   graphql.query('GetUserNotifications', (req, res, ctx) => {

@@ -409,7 +409,9 @@ function SkillSettings({
                 >
                   <Section title="Select a city">
                     {Object.keys(cities).map((item) => (
-                      <Item key={item} textValue={item}>{cities[item]}</Item>
+                      <Item key={item} textValue={item}>
+                        {cities[item]}
+                      </Item>
                     ))}
                   </Section>
                 </ListBox>

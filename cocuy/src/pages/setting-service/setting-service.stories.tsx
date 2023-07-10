@@ -10,7 +10,7 @@ export default Story;
 export const Primary = {
   args: {
     user: {
-      skills: []
-    }
+      skills: [],
+    },
   },
 };

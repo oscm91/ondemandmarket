@@ -15,7 +15,7 @@ export function Register({ user, navigator }: RegisterProps) {
         navigator={navigator}
         onFormSubmit={(values) => {
           user.register?.(values).then((user) => {
-            if(user.userType === 'client') {
+            if (user.userType === 'client') {
               navigator.goToProfile?.();
             } else {
               navigator.goToServices?.();

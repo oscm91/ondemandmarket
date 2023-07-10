@@ -1,9 +1,16 @@
-import styles from "./setting-service.module.scss";
-import { NavigatorState, UserState } from "@cocodemy/models";
-import Services from "../../forms/services/services";
-import { Content, Divider, Flex, Heading, IllustratedMessage, View } from "@adobe/react-spectrum";
-import Upload from "@spectrum-icons/illustrations/Upload";
-import { Header } from "../../components/header/header";
+import styles from './setting-service.module.scss';
+import { NavigatorState, UserState } from '@cocodemy/models';
+import Services from '../../forms/services/services';
+import {
+  Content,
+  Divider,
+  Flex,
+  Heading,
+  IllustratedMessage,
+  View,
+} from '@adobe/react-spectrum';
+import Upload from '@spectrum-icons/illustrations/Upload';
+import { Header } from '../../components/header/header';
 
 /* eslint-disable-next-line */
 export interface SettingServiceProps {
@@ -30,9 +37,7 @@ export function SettingService({ user, navigator }: SettingServiceProps) {
           <IllustratedMessage>
             <Upload />
             <Heading>Complete Your Skill </Heading>
-            <Content>
-              Select a edit skills
-            </Content>
+            <Content>Select a edit skills</Content>
           </IllustratedMessage>
         </View>
         <Services

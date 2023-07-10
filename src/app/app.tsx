@@ -10,8 +10,8 @@ import {
   SettingService,
   Profile,
   OrderService,
-  Notifications
-} from "@cocodemy/cocuy";
+  Notifications,
+} from '@cocodemy/cocuy';
 import { StateContext } from '@cocodemy/contexts';
 import { Route, Routes } from 'react-router-dom';
 import { PrivateRoute } from '../utils/components/PrivateRoute';
@@ -19,9 +19,16 @@ import { PublicRoute } from '../utils/components/PublicRoute';
 import { Loader } from '@cocodemy/cocuy';
 
 export function App() {
-  const { user, navigator, service, notifications } = React.useContext(StateContext);
+  const { user, navigator, service, notifications } =
+    React.useContext(StateContext);
 
-  if (!user || (user && user.authChecking) || user.signupLoading || user.skillsLoading || notifications.notificationsLoading) {
+  if (
+    !user ||
+    (user && user.authChecking) ||
+    user.signupLoading ||
+    user.skillsLoading ||
+    notifications.notificationsLoading
+  ) {
     return (
       <Page>
         <Loader />
@@ -66,7 +73,12 @@ export function App() {
         element={
           <PrivateRoute>
             <Page>
-              <Notifications user={user} navigator={navigator} service={service} notifications={notifications} />
+              <Notifications
+                user={user}
+                navigator={navigator}
+                service={service}
+                notifications={notifications}
+              />
             </Page>
           </PrivateRoute>
         }
@@ -86,7 +98,12 @@ export function App() {
         element={
           <PrivateRoute>
             <Page wrap>
-              <OrderService user={user} navigator={navigator} service={service} notifications={notifications} />
+              <OrderService
+                user={user}
+                navigator={navigator}
+                service={service}
+                notifications={notifications}
+              />
             </Page>
           </PrivateRoute>
         }

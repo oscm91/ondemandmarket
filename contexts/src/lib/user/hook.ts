@@ -1,6 +1,17 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { UserState, UserStore, Credentials, Skill, SkillStore } from "@cocodemy/models";
-import { addUser, settingSkills, resetSkills, resetUser } from '@cocodemy/reducers';
+import {
+  UserState,
+  UserStore,
+  Credentials,
+  Skill,
+  SkillStore,
+} from '@cocodemy/models';
+import {
+  addUser,
+  settingSkills,
+  resetSkills,
+  resetUser,
+} from '@cocodemy/reducers';
 import Cookies from 'js-cookie';
 
 import { gql, useLazyQuery, useMutation } from '@apollo/client';
@@ -99,8 +110,10 @@ export const useUser = (): UserState => {
   const [login, { data: loginData, loading: loginLoading, error: loginError }] =
     useMutation(LOGIN_MUTATION);
   const [getUser, { data: userData }] = useLazyQuery(USER_QUERY);
-  const [updateSkills, { data: skillsData, loading: skillsLoading, error: skillsError }] =
-    useMutation(UPDATE_SKILLS_MUTATION);
+  const [
+    updateSkills,
+    { data: skillsData, loading: skillsLoading, error: skillsError },
+  ] = useMutation(UPDATE_SKILLS_MUTATION);
   const dispatch = useDispatch();
   const user = useSelector((store: { user: UserStore }) => store.user);
   const skills = useSelector((store: { skills: SkillStore }) => {
@@ -128,7 +141,7 @@ export const useUser = (): UserState => {
       setAuthChecking(false);
     }
 
-    if(userData && userData.skills && userData.skills.length) {
+    if (userData && userData.skills && userData.skills.length) {
       dispatch(settingSkills(userData.skills));
     }
   }, [dispatch, userData]);

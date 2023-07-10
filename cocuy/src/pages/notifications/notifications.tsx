@@ -85,7 +85,9 @@ export function Notifications({
                 <Text>Status: {notification.serviceStatus}</Text>
               </Item>
               <Item textValue={notification.serviceCategories?.join(',')}>
-                <Text>Categories: {notification.serviceCategories?.join(',')}</Text>
+                <Text>
+                  Categories: {notification.serviceCategories?.join(',')}
+                </Text>
               </Item>
               <Item textValue={notification.serviceLocation}>
                 <Text>City: {notification.serviceLocation}</Text>
@@ -94,7 +96,9 @@ export function Notifications({
                 <Text>
                   Date:
                   {parseDate(
-                    new Date(notification.serviceDate).toISOString().split('T')[0]
+                    new Date(notification.serviceDate)
+                      .toISOString()
+                      .split('T')[0]
                   ).toString()}
                 </Text>
               </Item>
