@@ -1,35 +1,22 @@
 import styles from './profile.module.scss';
 import { NavigatorState, UserState } from '@cocodemy/models';
 import {
-  ActionButton,
-  Breadcrumbs,
-  Content,
   Divider,
   Flex,
   Text,
   Heading,
   IllustratedMessage,
   Item,
-  Menu,
-  TableHeader,
-  MenuTrigger,
-  TableView,
-  TableBody,
   Grid,
   ListView,
-  Column,
-  Row,
-  Cell,
   View,
-  Badge,
 } from '@adobe/react-spectrum';
 import RealTimeCustomerProfile from '@spectrum-icons/workflow/RealTimeCustomerProfile';
-import ShowMenu from '@spectrum-icons/workflow/ShowMenu';
 import DevicePhone from '@spectrum-icons/workflow/DevicePhone';
 import EmailCheck from '@spectrum-icons/workflow/EmailCheck';
 import Location from '@spectrum-icons/workflow/Location';
 import UserActivity from '@spectrum-icons/workflow/UserActivity';
-import { ReactElement } from "react";
+import { Header } from '../../components/header/header';
 
 /* eslint-disable-next-line */
 export interface ProfileProps {
@@ -42,55 +29,14 @@ export function Profile({ user, navigator }: ProfileProps) {
     <div className={styles['container']}>
       <Flex direction="column" gap="size-100">
         <View>
-          <Flex justifyContent="space-between">
-            <Breadcrumbs>
-              <Item key="home" textValue="home">
-                Home
-              </Item>
-              <Item key="profile" textValue="profile">
-                Profile
-              </Item>
-            </Breadcrumbs>
-            <MenuTrigger>
-              <ActionButton>
-                <ShowMenu></ShowMenu>
-                <Text>Options</Text>
-              </ActionButton>
-              <Menu
-                onAction={(key) => {
-                  if (key === 'profile') {
-                    navigator.goToProfile?.();
-                  } else if (key === 'settingServices') {
-                    navigator.goToServices?.();
-                  } else if (key === 'notifications') {
-                    navigator.goToNotifications?.();
-                  } else if (key === 'orders') {
-                    navigator.goToOrders?.();
-                  } else if (key === 'logout') {
-                    user.logout?.().then(() => {
-                      navigator.goToHome?.();
-                    });
-                  }
-                }}
-              >
-                <Item key="profile" textValue="profile">
-                  Profile
-                </Item>
-                <Item key="settingServices" textValue="settingServices">
-                  Skills
-                </Item>
-                <Item key="notifications" textValue="notifications">
-                  Notifications
-                </Item>
-                <Item key="orders" textValue="orders">
-                  Orders
-                </Item>
-                <Item key="logout" textValue="logout">
-                  Logout
-                </Item>
-              </Menu>
-            </MenuTrigger>
-          </Flex>
+          <Header
+            breadcrumbs={[
+              { key: 'home', text: 'Home' },
+              { key: 'profile', text: 'Profile' },
+            ]}
+            navigator={navigator}
+            user={user}
+          />
         </View>
         <Divider size="S"></Divider>
         <View>
@@ -178,7 +124,9 @@ export function Profile({ user, navigator }: ProfileProps) {
                   <Text>Skills</Text>
                   <Text slot="description">Update my skills</Text>
                 </Item>
-              ) : null as any}
+              ) : (
+                (null as any)
+              )}
               <Item key="notifications" textValue="notifications" hasChildItems>
                 <UserActivity />
                 <Text>Notifications</Text>
@@ -190,7 +138,9 @@ export function Profile({ user, navigator }: ProfileProps) {
                   <Text>Orders</Text>
                   <Text slot="description">Create a service order</Text>
                 </Item>
-              ) : null as any}
+              ) : (
+                (null as any)
+              )}
             </ListView>
           </View>
         </Grid>

@@ -15,6 +15,7 @@ import {
 } from "@adobe/react-spectrum";
 import Upload from '@spectrum-icons/illustrations/Upload';
 import ShowMenu from '@spectrum-icons/workflow/ShowMenu';
+import { Header } from '../../components/header/header';
 
 /* eslint-disable-next-line */
 export interface SettingServiceProps {
@@ -27,25 +28,14 @@ export function SettingService({ user, navigator }: SettingServiceProps) {
     <div className={styles['container']}>
       <Flex direction="column" gap="size-100">
         <View>
-          <Flex justifyContent="space-between">
-            <Breadcrumbs>
-              <Item key="home" textValue="home">Home</Item>
-              <Item key="skills" textValue="skills">Skills</Item>
-              <Item key="settings" textValue="settings">Settings</Item>
-            </Breadcrumbs>
-            <MenuTrigger>
-              <ActionButton>
-                <ShowMenu></ShowMenu>
-                <Text>Options</Text>
-              </ActionButton>
-              <Menu onAction={(key) => alert(key)}>
-                <Item key="home" textValue="home">Home</Item>
-                <Item key="skills" textValue="skills">Skills</Item>
-                <Item key="notifications" textValue="notifications">Notifications</Item>
-                <Item key="orders" textValue="orders">Orders</Item>
-              </Menu>
-            </MenuTrigger>
-          </Flex>
+          <Header
+            breadcrumbs={[
+              { key: 'home', text: 'Home' },
+              { key: 'skill', text: 'Skills' },
+            ]}
+            navigator={navigator}
+            user={user}
+          />
         </View>
         <Divider size="S"></Divider>
         <View>
