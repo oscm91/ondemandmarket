@@ -90,6 +90,7 @@ export interface Service {
 export interface ServiceState {
   services?: { [key: string]: Service };
   servicesLoading: boolean;
+  createServicesLoading: boolean;
   getServiceBySkills?: (skills: Service[]) => Promise<Service[]>;
   createServices?: (skills: Service[]) => Promise<Service[]>;
 }

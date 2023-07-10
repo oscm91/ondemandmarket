@@ -700,8 +700,26 @@ export function Job({
                               },
                               {}
                             );
+
+                            const resultServiceSearch = Object.keys(
+                              values
+                            ).reduce((result, serviceId) => {
+                              const doersService =
+                                doersByServiceResult[serviceId].doers;
+                              if (doersService && doersService.length) {
+                                return {
+                                  ...result,
+                                  [serviceId]: values[serviceId],
+                                };
+                              }
+                              return {
+                                ...result,
+                              };
+                            }, {});
+
                             setDoersByService(doersByServiceResult);
                             setTabSelected('settings');
+                            setValues(resultServiceSearch);
                           });
                       }}
                     >
@@ -731,6 +749,7 @@ export function Job({
                     onPress={() => {
                       setTabSelected('summary');
                     }}
+                    isDisabled={!!Object.keys(errors).length}
                   >
                     Summary
                   </Button>
@@ -774,9 +793,13 @@ export function Job({
                   >
                     Back
                   </Button>
-                  <Button variant="accent" type="submit" marginTop="size-100">
-                    Confirm
-                  </Button>
+                  {service.createServicesLoading ? (
+                    <Loader />
+                  ) : (
+                    <Button isDisabled={!!Object.keys(errors).length} variant="accent" type="submit" marginTop="size-100">
+                      Confirm
+                    </Button>
+                  )}
                 </Flex>
               </Item>
             </TabPanels>

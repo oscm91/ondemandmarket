@@ -32,6 +32,7 @@ export const StateContext = createContext<State>({
   },
   service: {
     servicesLoading: false,
+    createServicesLoading: false,
   }
 });
 

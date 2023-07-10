@@ -79,6 +79,7 @@ export const useService = (): ServiceState => {
 
   return {
     servicesLoading,
+    createServicesLoading,
     getServiceBySkills,
     createServices,
   };
