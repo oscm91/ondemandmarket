@@ -1,4 +1,4 @@
-import styles from './otp.module.scss';
+import styles from "./otp.module.scss";
 
 /* eslint-disable-next-line */
 export interface OtpProps {}

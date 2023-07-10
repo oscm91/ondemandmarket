@@ -1,26 +1,21 @@
 import {
-  Grid,
-  Flex,
-  View,
-  Item,
   Button,
   ButtonGroup,
-  Text,
-  ListView,
-  IllustratedMessage,
-  Heading,
   Content,
   Divider,
-} from '@adobe/react-spectrum';
-import Upload from '@spectrum-icons/illustrations/Upload';
-import { Header } from '../../components/header/header';
-import {
-  NavigatorState,
-  ServiceState,
-  UserState,
-  NotificationsState,
-} from '@cocodemy/models';
-import { parseDate } from '@internationalized/date';
+  Flex,
+  Grid,
+  Heading,
+  IllustratedMessage,
+  Item,
+  ListView,
+  Text,
+  View
+} from "@adobe/react-spectrum";
+import Upload from "@spectrum-icons/illustrations/Upload";
+import { Header } from "../../components/header/header";
+import { NavigatorState, NotificationsState, ServiceState, UserState } from "@cocodemy/models";
+import { parseDate } from "@internationalized/date";
 
 /* eslint-disable-next-line */
 export interface NotificationsProps {

@@ -1,6 +1,6 @@
-import { setupWorker, graphql } from 'msw';
+import { graphql, setupWorker } from 'msw';
 import localForage from 'localforage';
-import { User, Skill, Service, Doer, Notification } from '@cocodemy/models';
+import { Doer, Notification, Service, Skill, User } from '@cocodemy/models';
 
 const userStore = localForage.createInstance({
   name: 'userStore',

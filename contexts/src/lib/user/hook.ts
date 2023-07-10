@@ -1,16 +1,16 @@
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  UserState,
-  UserStore,
   Credentials,
   Skill,
   SkillStore,
+  UserState,
+  UserStore,
 } from '@cocodemy/models';
 import {
   addUser,
-  settingSkills,
   resetSkills,
   resetUser,
+  settingSkills,
 } from '@cocodemy/reducers';
 import Cookies from 'js-cookie';
 

@@ -1,22 +1,21 @@
 import React from 'react';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from './app.module.scss';
 
 import {
-  Page,
-  EarlyAccess,
-  Register,
   Access,
-  SettingService,
-  Profile,
-  OrderService,
+  EarlyAccess,
+  Loader,
   Notifications,
+  OrderService,
+  Page,
+  Profile,
+  Register,
+  SettingService,
 } from '@cocodemy/cocuy';
 import { StateContext } from '@cocodemy/contexts';
 import { Route, Routes } from 'react-router-dom';
 import { PrivateRoute } from '../utils/components/PrivateRoute';
 import { PublicRoute } from '../utils/components/PublicRoute';
-import { Loader } from '@cocodemy/cocuy';
 
 export function App() {
   const { user, navigator, service, notifications } =

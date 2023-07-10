@@ -1,22 +1,11 @@
-import React from 'react';
-import styles from './early-access.module.scss';
-import {
-  Grid,
-  View,
-  Image,
-  Flex,
-  TextField,
-  Button,
-  Text,
-  Heading,
-  Divider,
-  Provider,
-} from '@adobe/react-spectrum';
-import Bug from '@spectrum-icons/workflow/Bug';
-import Logo from '../../assets/logo.svg';
-import IsoLogo from '../../assets/isologo.svg';
-import VideoThumbnail from '../../assets/video-thumbnail.png';
-import { NavigatorState } from '@cocodemy/models';
+import React from "react";
+import styles from "./early-access.module.scss";
+import { Button, Divider, Flex, Grid, Heading, Image, Provider, Text, TextField, View } from "@adobe/react-spectrum";
+import Bug from "@spectrum-icons/workflow/Bug";
+import Logo from "../../assets/logo.svg";
+import IsoLogo from "../../assets/isologo.svg";
+import VideoThumbnail from "../../assets/video-thumbnail.png";
+import { NavigatorState } from "@cocodemy/models";
 
 /* eslint-disable-next-line */
 export interface EarlyAccessProps {

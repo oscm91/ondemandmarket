@@ -1,4 +1,4 @@
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { NavigatorState } from '@cocodemy/models';
 
 export const useNavigator = (): NavigatorState => {

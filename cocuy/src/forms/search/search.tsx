@@ -1,4 +1,4 @@
-import styles from './search.module.scss';
+import styles from "./search.module.scss";
 
 /* eslint-disable-next-line */
 export interface SearchProps {}

@@ -1,5 +1,6 @@
-import { Flex, ProgressCircle } from '@adobe/react-spectrum';
-import React from 'react';
+import { Flex, ProgressCircle } from "@adobe/react-spectrum";
+import React from "react";
+
 /* eslint-disable-next-line */
 export interface LoaderProps {}
 

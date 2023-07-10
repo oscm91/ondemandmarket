@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  defaultTheme,
-  Flex,
-  lightTheme,
-  Provider,
-  View,
-} from '@adobe/react-spectrum';
+import { defaultTheme, Flex, Provider, View } from '@adobe/react-spectrum';
 
 export interface PageProps {
   children: React.ReactNode;

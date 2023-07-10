@@ -1,39 +1,38 @@
 import React from 'react';
 import { Formik } from 'formik';
-import { today, parseDate, getLocalTimeZone } from '@internationalized/date';
+import { getLocalTimeZone, parseDate, today } from '@internationalized/date';
 import {
+  ActionButton,
+  ActionMenu,
   Button,
-  Dialog,
-  DialogTrigger,
-  Form,
-  ListBox,
-  Item,
-  View,
-  LabeledValue,
-  ListView,
-  ComboBox,
+  ButtonGroup,
+  Calendar,
   Cell,
   Column,
-  Calendar,
-  TableView,
-  TableBody,
+  ComboBox,
+  Content,
+  Dialog,
+  DialogTrigger,
+  Divider,
+  Flex,
+  Form,
+  Heading,
+  Item,
+  LabeledValue,
+  ListBox,
+  ListView,
   Row,
-  Tabs,
+  SearchField,
+  Section,
+  TableBody,
+  TableHeader,
+  TableView,
   TabList,
   TabPanels,
-  Text,
-  TableHeader,
-  ActionButton,
-  Heading,
-  Flex,
-  Divider,
-  Content,
-  ButtonGroup,
-  Slider,
-  Section,
-  ActionMenu,
-  SearchField,
+  Tabs,
   TagGroup,
+  Text,
+  View,
 } from '@adobe/react-spectrum';
 import ViewList from '@spectrum-icons/workflow/ViewList';
 import Settings from '@spectrum-icons/workflow/Settings';
@@ -440,7 +439,7 @@ function SkillSettings({
   values,
   setFieldValue,
   cities,
-  doersByService,
+  doersByService = {},
 }: {
   values: { [key: string]: Service };
   setFieldValue: (key: string, value: any) => void;
@@ -456,18 +455,21 @@ function SkillSettings({
       <ListView
         aria-label="Skills Settign"
         items={Object.values(
-          Object.keys(values).reduce((result, serviceId) => {
-            const doersService = doersByService[serviceId].doers;
-            if (doersService && doersService.length) {
+          Object.keys(values).reduce(
+            (result: { [key: string]: Service }, serviceId) => {
+              const doersService = doersByService[serviceId]?.doers;
+              if (doersService && doersService.length) {
+                return {
+                  ...result,
+                  [serviceId]: values[serviceId],
+                };
+              }
               return {
                 ...result,
-                [serviceId]: values[serviceId],
               };
-            }
-            return {
-              ...result,
-            };
-          }, {})
+            },
+            {}
+          )
         )}
         selectionStyle="highlight"
         selectionMode="multiple"
@@ -476,7 +478,7 @@ function SkillSettings({
           setSelectedSkill(skillSelected);
         }}
       >
-        {(item) => (
+        {(item: Service) => (
           <Item key={item.id} textValue={item.name}>
             {item.name}
             <ActionMenu onAction={() => setSelectedSkill(item)}>
@@ -509,14 +511,20 @@ function SkillSettings({
                   onSelectionChange={(selected) => {
                     const newDoers = [];
 
-                    const doersById = doersByService[
-                      selectedSkill?.id
-                    ].doers.reduce((result, doer) => {
-                      return {
-                        ...result,
-                        [doer.id]: doer,
-                      };
-                    }, {});
+                    const doersById =
+                      doersByService &&
+                      doersByService[selectedSkill?.id] &&
+                      doersByService[selectedSkill?.id].doers
+                        ? doersByService[selectedSkill?.id].doers.reduce(
+                            (result, doer) => {
+                              return {
+                                ...result,
+                                [doer.id]: doer,
+                              };
+                            },
+                            {}
+                          )
+                        : {};
 
                     for (const newDoerId of selected) {
                       newDoers.push(doersById[newDoerId]);
@@ -605,7 +613,7 @@ function SkillSummary({ values }: { values: { [key: string]: Service } }) {
               </Cell>
               <Cell>
                 <Flex gap="size-100">
-                  {values[skillId].doers.map((doer, i) => {
+                  {values[skillId]?.doers.map((doer, i) => {
                     return (
                       <>
                         {i === 0 ? null : (

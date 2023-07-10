@@ -2,11 +2,11 @@ import { Provider } from 'react-redux';
 import { createContext, useMemo } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { configureStore } from '@reduxjs/toolkit';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import thunk from 'redux-thunk';
 
 import { State } from '@cocodemy/models';
-import { userSlice, skillSlice } from '@cocodemy/reducers';
+import { skillSlice, userSlice } from '@cocodemy/reducers';
 
 import { useUser } from './user/hook';
 import { useNavigator } from './navigator/hook';
