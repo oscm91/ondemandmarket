@@ -29,6 +29,7 @@ import DevicePhone from '@spectrum-icons/workflow/DevicePhone';
 import EmailCheck from '@spectrum-icons/workflow/EmailCheck';
 import Location from '@spectrum-icons/workflow/Location';
 import UserActivity from '@spectrum-icons/workflow/UserActivity';
+import { ReactElement } from "react";
 
 /* eslint-disable-next-line */
 export interface ProfileProps {
@@ -43,8 +44,12 @@ export function Profile({ user, navigator }: ProfileProps) {
         <View>
           <Flex justifyContent="space-between">
             <Breadcrumbs>
-              <Item key="home" textValue="home">Home</Item>
-              <Item key="profile" textValue="profile">Profile</Item>
+              <Item key="home" textValue="home">
+                Home
+              </Item>
+              <Item key="profile" textValue="profile">
+                Profile
+              </Item>
             </Breadcrumbs>
             <MenuTrigger>
               <ActionButton>
@@ -68,11 +73,21 @@ export function Profile({ user, navigator }: ProfileProps) {
                   }
                 }}
               >
-                <Item key="profile" textValue="profile">Profile</Item>
-                <Item key="settingServices" textValue="settingServices">Skills</Item>
-                <Item key="notifications" textValue="notifications">Notifications</Item>
-                <Item key="orders" textValue="orders">Orders</Item>
-                <Item key="logout" textValue="logout">Logout</Item>
+                <Item key="profile" textValue="profile">
+                  Profile
+                </Item>
+                <Item key="settingServices" textValue="settingServices">
+                  Skills
+                </Item>
+                <Item key="notifications" textValue="notifications">
+                  Notifications
+                </Item>
+                <Item key="orders" textValue="orders">
+                  Orders
+                </Item>
+                <Item key="logout" textValue="logout">
+                  Logout
+                </Item>
               </Menu>
             </MenuTrigger>
           </Flex>
@@ -154,12 +169,16 @@ export function Profile({ user, navigator }: ProfileProps) {
                 <Text slot="description">See my information</Text>
               </Item>
               {user.info?.userType === 'doer' ? (
-                <Item key="settingServices" textValue="settingServices" hasChildItems>
+                <Item
+                  key="settingServices"
+                  textValue="settingServices"
+                  hasChildItems
+                >
                   <UserActivity />
                   <Text>Skills</Text>
                   <Text slot="description">Update my skills</Text>
                 </Item>
-              ) : null}
+              ) : null as any}
               <Item key="notifications" textValue="notifications" hasChildItems>
                 <UserActivity />
                 <Text>Notifications</Text>
@@ -171,7 +190,7 @@ export function Profile({ user, navigator }: ProfileProps) {
                   <Text>Orders</Text>
                   <Text slot="description">Create a service order</Text>
                 </Item>
-              ) : null}
+              ) : null as any}
             </ListView>
           </View>
         </Grid>
