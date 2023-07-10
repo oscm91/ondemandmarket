@@ -5,13 +5,13 @@ import {
   SkillStore,
   UserState,
   UserStore,
-} from '@cocodemy/models';
+} from '@ondemandmarket/models';
 import {
   addUser,
   resetSkills,
   resetUser,
   settingSkills,
-} from '@cocodemy/reducers';
+} from '@ondemandmarket/reducers';
 import Cookies from 'js-cookie';
 
 import { gql, useLazyQuery, useMutation } from '@apollo/client';

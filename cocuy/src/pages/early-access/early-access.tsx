@@ -5,7 +5,7 @@ import Bug from "@spectrum-icons/workflow/Bug";
 import Logo from "../../assets/logo.svg";
 import IsoLogo from "../../assets/isologo.svg";
 import VideoThumbnail from "../../assets/video-thumbnail.png";
-import { NavigatorState } from "@cocodemy/models";
+import { NavigatorState } from "@ondemandmarket/models";
 
 /* eslint-disable-next-line */
 export interface EarlyAccessProps {
@@ -81,7 +81,7 @@ export function EarlyAccess({ navigator }: EarlyAccessProps) {
               <TextField
                 inputMode="email"
                 type="email"
-                defaultValue="user@cocodemy.com"
+                defaultValue="user@ondemandmarket.com"
                 width={{
                   base: '100%',
                   M: 'inline',
@@ -414,10 +414,10 @@ export function EarlyAccess({ navigator }: EarlyAccessProps) {
               </View>
             </Flex>
             <Flex justifyContent="space-between">
-              <p>© cocodemy 2023. Made with love by cocodemy</p>
+              <p>© ondemandmarket 2023. Made with love by ondemandmarket</p>
               <p>
                 For further details, drop a mail to{' '}
-                <a href="email:hello@cocodemy.co">hello@cocodemy.co</a>
+                <a href="email:hello@ondemandmarket.co">hello@ondemandmarket.co</a>
               </p>
             </Flex>
           </Flex>

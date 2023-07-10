@@ -41,7 +41,7 @@ import AddToSelection from '@spectrum-icons/workflow/AddToSelection';
 import Book from '@spectrum-icons/workflow/Book';
 import Alert from '@spectrum-icons/workflow/Alert';
 import * as Yup from 'yup';
-import { Cities, Service, ServiceState, Skill } from '@cocodemy/models';
+import { Cities, Service, ServiceState, Skill } from '@ondemandmarket/models';
 import Loader from '../../components/loader/loader';
 
 interface JobProps {

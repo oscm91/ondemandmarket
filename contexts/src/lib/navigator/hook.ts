@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { NavigatorState } from '@cocodemy/models';
+import { NavigatorState } from '@ondemandmarket/models';
 
 export const useNavigator = (): NavigatorState => {
   const navigate = useNavigate();

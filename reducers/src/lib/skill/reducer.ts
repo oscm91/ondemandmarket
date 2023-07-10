@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Skill, SkillStore } from '@cocodemy/models';
+import { Skill, SkillStore } from '@ondemandmarket/models';
 
 export const skillSlice = createSlice({
   name: 'skill',

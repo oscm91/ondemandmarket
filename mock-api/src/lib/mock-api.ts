@@ -1,6 +1,6 @@
 import { graphql, setupWorker } from 'msw';
 import localForage from 'localforage';
-import { Doer, Notification, Service, Skill, User } from '@cocodemy/models';
+import { Doer, Notification, Service, Skill, User } from '@ondemandmarket/models';
 
 const userStore = localForage.createInstance({
   name: 'userStore',

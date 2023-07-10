@@ -36,7 +36,7 @@ import AddToSelection from '@spectrum-icons/workflow/AddToSelection';
 import Book from '@spectrum-icons/workflow/Book';
 import Alert from '@spectrum-icons/workflow/Alert';
 import * as Yup from 'yup';
-import { Cities, Skill } from '@cocodemy/models';
+import { Cities, Skill } from '@ondemandmarket/models';
 
 interface ServicesProps {
   onFormSubmit: (values: Skill[]) => void;

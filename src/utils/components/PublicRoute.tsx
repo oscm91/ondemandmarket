@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom';
 import React from 'react';
-import { StateContext } from '@cocodemy/contexts';
+import { StateContext } from '@ondemandmarket/contexts';
 
 interface PublicRouteProps {
   children: React.ReactElement;

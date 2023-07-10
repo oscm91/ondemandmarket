@@ -15,7 +15,7 @@ import LockClosed from '@spectrum-icons/workflow/LockClosed';
 import React from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { NavigatorState, User as UserModel } from '@cocodemy/models';
+import { NavigatorState, User as UserModel } from '@ondemandmarket/models';
 
 const SignupSchema = Yup.object().shape({
   firstName: Yup.string()

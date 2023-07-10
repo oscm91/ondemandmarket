@@ -1,6 +1,6 @@
 import styles from "./register.module.scss";
 import Signup from "../../forms/signup/signup";
-import { NavigatorState, UserState } from "@cocodemy/models";
+import { NavigatorState, UserState } from "@ondemandmarket/models";
 
 /* eslint-disable-next-line */
 export interface RegisterProps {

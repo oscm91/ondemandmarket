@@ -1,4 +1,4 @@
-import { Credentials, NavigatorState } from '@cocodemy/models';
+import { Credentials, NavigatorState } from '@ondemandmarket/models';
 import {
   Button,
   Flex,

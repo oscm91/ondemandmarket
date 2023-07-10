@@ -1,4 +1,4 @@
-import { Service, ServiceState } from '@cocodemy/models';
+import { Service, ServiceState } from '@ondemandmarket/models';
 
 import { gql, useLazyQuery, useMutation } from '@apollo/client';
 

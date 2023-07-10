@@ -1,5 +1,5 @@
 {
-  "name": "cocodemy",
+  "name": "ondemandmarket",
   "$schema": "node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "./src",
   "projectType": "application",
@@ -9,7 +9,7 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/cocodemy"
+        "outputPath": "dist/ondemandmarket"
       },
       "configurations": {
         "development": {
@@ -24,15 +24,15 @@
       "executor": "@nx/vite:dev-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "cocodemy:build"
+        "buildTarget": "ondemandmarket:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "cocodemy:build:development",
+          "buildTarget": "ondemandmarket:build:development",
           "hmr": true
         },
         "production": {
-          "buildTarget": "cocodemy:build:production",
+          "buildTarget": "ondemandmarket:build:production",
           "hmr": false
         }
       }
@@ -41,23 +41,23 @@
       "executor": "@nx/vite:preview-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "cocodemy:build"
+        "buildTarget": "ondemandmarket:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "cocodemy:build:development"
+          "buildTarget": "ondemandmarket:build:development"
         },
         "production": {
-          "buildTarget": "cocodemy:build:production"
+          "buildTarget": "ondemandmarket:build:production"
         }
       }
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": ["coverage/cocodemy"],
+      "outputs": ["coverage/ondemandmarket"],
       "options": {
         "passWithNoTests": true,
-        "reportsDirectory": "coverage/cocodemy"
+        "reportsDirectory": "coverage/ondemandmarket"
       }
     },
     "lint": {
@@ -70,7 +70,7 @@
     "serve-static": {
       "executor": "@nx/web:file-server",
       "options": {
-        "buildTarget": "cocodemy:build"
+        "buildTarget": "ondemandmarket:build"
       }
     }
   },

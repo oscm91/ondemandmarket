@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { User, UserStore } from '@cocodemy/models';
+import { User, UserStore } from '@ondemandmarket/models';
 
 export const userSlice = createSlice({
   name: 'user',

@@ -1,7 +1,7 @@
 import { gql, useLazyQuery } from '@apollo/client';
 import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
-import { NotificationsState } from '@cocodemy/models';
+import { NotificationsState } from '@ondemandmarket/models';
 
 const GET_USER_NOTIFICATIONS_QUERY = gql`
   query GetUserNotifications($userId: ID!) {

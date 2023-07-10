@@ -5,8 +5,8 @@ import { configureStore } from '@reduxjs/toolkit';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import thunk from 'redux-thunk';
 
-import { State } from '@cocodemy/models';
-import { skillSlice, userSlice } from '@cocodemy/reducers';
+import { State } from '@ondemandmarket/models';
+import { skillSlice, userSlice } from '@ondemandmarket/reducers';
 
 import { useUser } from './user/hook';
 import { useNavigator } from './navigator/hook';

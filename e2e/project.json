@@ -8,15 +8,15 @@
       "executor": "@nx/cypress:cypress",
       "options": {
         "cypressConfig": "e2e/cypress.config.ts",
-        "devServerTarget": "cocodemy:serve:development",
+        "devServerTarget": "ondemandmarket:serve:development",
         "testingType": "e2e"
       },
       "configurations": {
         "production": {
-          "devServerTarget": "cocodemy:serve:production"
+          "devServerTarget": "ondemandmarket:serve:production"
         },
         "ci": {
-          "devServerTarget": "cocodemy:serve-static"
+          "devServerTarget": "ondemandmarket:serve-static"
         }
       }
     },
@@ -29,5 +29,5 @@
     }
   },
   "tags": [],
-  "implicitDependencies": ["cocodemy"]
+  "implicitDependencies": ["ondemandmarket"]
 }

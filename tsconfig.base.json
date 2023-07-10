@@ -15,11 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@cocodemy/cocuy": ["cocuy/src/index.ts"],
-      "@cocodemy/contexts": ["contexts/src/index.ts"],
-      "@cocodemy/mock-api": ["mock-api/src/index.ts"],
-      "@cocodemy/models": ["models/src/index.ts"],
-      "@cocodemy/reducers": ["reducers/src/index.ts"]
+      "@ondemandmarket/cocuy": ["cocuy/src/index.ts"],
+      "@ondemandmarket/contexts": ["contexts/src/index.ts"],
+      "@ondemandmarket/mock-api": ["mock-api/src/index.ts"],
+      "@ondemandmarket/models": ["models/src/index.ts"],
+      "@ondemandmarket/reducers": ["reducers/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

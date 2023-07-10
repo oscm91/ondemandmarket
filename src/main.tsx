@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
-import { StateProvider } from '@cocodemy/contexts';
-import { worker } from '@cocodemy/mock-api';
+import { StateProvider } from '@ondemandmarket/contexts';
+import { worker } from '@ondemandmarket/mock-api';
 
 import './styles.scss';
 import App from './app/app';

@@ -1,5 +1,5 @@
 import styles from "./profile.module.scss";
-import { NavigatorState, UserState } from "@cocodemy/models";
+import { NavigatorState, UserState } from "@ondemandmarket/models";
 import { Divider, Flex, Grid, Heading, IllustratedMessage, Item, ListView, Text, View } from "@adobe/react-spectrum";
 import RealTimeCustomerProfile from "@spectrum-icons/workflow/RealTimeCustomerProfile";
 import DevicePhone from "@spectrum-icons/workflow/DevicePhone";

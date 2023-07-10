@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavigatorState, UserState } from '@cocodemy/models';
+import { NavigatorState, UserState } from '@ondemandmarket/models';
 import {
   ActionButton,
   Breadcrumbs,

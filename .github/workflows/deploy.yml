@@ -47,7 +47,7 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload dist repository
-          path: './dist/cocodemy'
+          path: './dist/ondemandmarket'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1

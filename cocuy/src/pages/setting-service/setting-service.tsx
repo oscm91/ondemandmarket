@@ -1,5 +1,5 @@
 import styles from "./setting-service.module.scss";
-import { NavigatorState, UserState } from "@cocodemy/models";
+import { NavigatorState, UserState } from "@ondemandmarket/models";
 import Services from "../../forms/services/services";
 import { Content, Divider, Flex, Heading, IllustratedMessage, View } from "@adobe/react-spectrum";
 import Upload from "@spectrum-icons/illustrations/Upload";

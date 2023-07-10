@@ -11,8 +11,8 @@ import {
   Profile,
   Register,
   SettingService,
-} from '@cocodemy/cocuy';
-import { StateContext } from '@cocodemy/contexts';
+} from '@ondemandmarket/cocuy';
+import { StateContext } from '@ondemandmarket/contexts';
 import { Route, Routes } from 'react-router-dom';
 import { PrivateRoute } from '../utils/components/PrivateRoute';
 import { PublicRoute } from '../utils/components/PublicRoute';

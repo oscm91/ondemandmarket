@@ -9,7 +9,7 @@ export default defineConfig(({ command }) => {
 
   return {
     base,
-    cacheDir: './node_modules/.vite/cocodemy',
+    cacheDir: './node_modules/.vite/ondemandmarket',
 
     server: {
       port: 4200,

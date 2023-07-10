@@ -1,5 +1,5 @@
 import styles from "./order-service.module.scss";
-import { NavigatorState, NotificationsState, ServiceState, UserState } from "@cocodemy/models";
+import { NavigatorState, NotificationsState, ServiceState, UserState } from "@ondemandmarket/models";
 import Job from "../../forms/job/job";
 import { Content, Divider, Flex, Heading, IllustratedMessage, View } from "@adobe/react-spectrum";
 import Upload from "@spectrum-icons/illustrations/Upload";
