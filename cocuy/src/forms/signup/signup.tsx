@@ -62,7 +62,6 @@ export function Signup({ onFormSubmit, navigator }: SignupProps) {
       validationSchema={SignupSchema}
       onSubmit={(values: UserModel) => {
         // same shape as initial values
-        console.log(values);
         onFormSubmit(values);
       }}
     >

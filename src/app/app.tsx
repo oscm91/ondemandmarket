@@ -2,7 +2,16 @@ import React from 'react';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import styles from './app.module.scss';
 
-import { Page, EarlyAccess, Register, Access, SettingService, Profile, OrderService } from "@cocodemy/cocuy";
+import {
+  Page,
+  EarlyAccess,
+  Register,
+  Access,
+  SettingService,
+  Profile,
+  OrderService,
+  Notifications
+} from "@cocodemy/cocuy";
 import { StateContext } from '@cocodemy/contexts';
 import { Route, Routes } from 'react-router-dom';
 import { PrivateRoute } from '../utils/components/PrivateRoute';
@@ -10,9 +19,9 @@ import { PublicRoute } from '../utils/components/PublicRoute';
 import { Loader } from '@cocodemy/cocuy';
 
 export function App() {
-  const { user, navigator, service } = React.useContext(StateContext);
+  const { user, navigator, service, notifications } = React.useContext(StateContext);
 
-  if (!user || (user && user.authChecking) || user.signupLoading || user.skillsLoading) {
+  if (!user || (user && user.authChecking) || user.signupLoading || user.skillsLoading || notifications.notificationsLoading) {
     return (
       <Page>
         <Loader />
@@ -53,11 +62,11 @@ export function App() {
         }
       />
       <Route
-        path="/app"
+        path="/notifications"
         element={
           <PrivateRoute>
             <Page>
-              <EarlyAccess navigator={navigator} />
+              <Notifications user={user} navigator={navigator} service={service} notifications={notifications} />
             </Page>
           </PrivateRoute>
         }
@@ -77,7 +86,7 @@ export function App() {
         element={
           <PrivateRoute>
             <Page wrap>
-              <OrderService user={user} navigator={navigator} service={service} />
+              <OrderService user={user} navigator={navigator} service={service} notifications={notifications} />
             </Page>
           </PrivateRoute>
         }

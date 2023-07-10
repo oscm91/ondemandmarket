@@ -34,7 +34,6 @@ export interface NavigatorState {
   goToHome?: () => void;
   goToRegister?: () => void;
   goToLogin?: () => void;
-  goToApp?: () => void;
   goToServices?: () => void;
   goToProfile?: () => void;
   goToOrders?: () => void;
@@ -50,6 +49,7 @@ export interface State {
   user: UserState;
   navigator: NavigatorState;
   service: ServiceState;
+  notifications: NotificationsState;
 }
 
 export interface Skill {
@@ -79,6 +79,7 @@ export interface Doer {
 
 export interface Service {
   id: string;
+  userId?: string;
   name: string;
   description: string;
   category: string[];
@@ -92,5 +93,23 @@ export interface ServiceState {
   servicesLoading: boolean;
   createServicesLoading: boolean;
   getServiceBySkills?: (skills: Service[]) => Promise<Service[]>;
-  createServices?: (skills: Service[]) => Promise<Service[]>;
+  createServices?: (skills: Service[], userId: string) => Promise<Service[]>;
+}
+
+export interface NotificationsState {
+  list: Notification[];
+  notificationsLoading: boolean;
+  refreshNotifications: () => void;
+}
+
+export interface Notification {
+  serviceId: string;
+  serviceName: string;
+  doerName: string;
+  serviceCategories: string[];
+  serviceDate: number;
+  serviceDescription: string;
+  serviceLocation: string;
+  servicePrice: number;
+  serviceStatus: string;
 }

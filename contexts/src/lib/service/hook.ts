@@ -1,8 +1,6 @@
 import { Service, ServiceState } from '@cocodemy/models';
 
 import { gql, useLazyQuery, useMutation } from '@apollo/client';
-import { useEffect, useState } from 'react';
-import { settingSkills } from '@cocodemy/reducers';
 
 const GET_SERVICES_BY_SKILLS_QUERY = gql`
   query GetServicesBySkills($services: [String]!) {
@@ -26,8 +24,8 @@ const GET_SERVICES_BY_SKILLS_QUERY = gql`
 `;
 
 const CREATE_SERVICES_MUTATION = gql`
-  mutation CreateServices($services: [ServiceInput]!) {
-    createServices(services: $services) {
+  mutation CreateServices($services: [ServiceInput]!, $userId: ID!) {
+    createServices(services: $services, userId: $userId) {
       id
       name
       description
@@ -67,8 +65,8 @@ export const useService = (): ServiceState => {
       });
   };
 
-  const createServices = (services: Service[]) => {
-    return mutationCreateServices({ variables: { services } })
+  const createServices = (services: Service[], userId: string) => {
+    return mutationCreateServices({ variables: { services, userId } })
       .then((response) => {
         return response.data.createServices;
       })

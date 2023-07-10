@@ -1,3 +1,4 @@
+export * from './pages/notifications/notifications';
 export * from './pages/order-service/order-service';
 export * from './components/header/header';
 export * from './pages/profile/profile';

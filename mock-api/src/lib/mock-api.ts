@@ -1,6 +1,6 @@
 import { setupWorker, graphql } from 'msw';
 import localForage from 'localforage';
-import { User, Skill, Service } from '@cocodemy/models';
+import { User, Skill, Service, Doer, Notification } from '@cocodemy/models';
 
 const userStore = localForage.createInstance({
   name: 'userStore',
@@ -12,6 +12,10 @@ const skillStore = localForage.createInstance({
 
 const serviceStore = localForage.createInstance({
   name: 'serviceStore',
+});
+
+const notificationStore = localForage.createInstance({
+  name: 'notificationStore',
 });
 
 function delay(ms: number) {
@@ -194,24 +198,70 @@ export const worker = setupWorker(
   }),
 
   graphql.mutation('CreateServices', (req, res, ctx) => {
-    const { services } = req.variables;
+    const { services, userId } = req.variables;
 
     // Almacenar los servicios en IndexedDB con un ID aleatorio como clave
     const promises = services.map((service: Service) => {
       const id = Math.random().toString(36).substr(2, 9);
+      service.userId = userId;
       return serviceStore.setItem(id, service);
     });
 
-    return Promise.all(promises).then(async () => {
+    return Promise.all(promises).then(async (services) => {
+      // Almacenar las notificaciones para el userId y para cada uno de los doers en cada servicio
+      const notificationPromises = [
+        userId,
+        ...services.flatMap((service) =>
+          service.doers.map((doer: Doer | User) => doer.id)
+        ),
+      ].map(async (id) => {
+        const notifications: Notification[] =
+          (await notificationStore.getItem(id)) || [];
+        const newNotifications = services.map((service: Service) => {
+          const doerNames = (service.doers || []).map(doer => `${doer.firstName} ${doer.lastName}`).join(', ');
+          const doerCities = [...new Set((service.doers || []).flatMap(doer => doer.cities))].join(', ');
+          return {
+            serviceId: service.id,
+            serviceName: service.name,
+            doerName: id === userId ? doerNames : `${(service.doers || []).find(doer => doer.id === id)?.firstName} ${(service.doers || []).find(doer => doer.id === id)?.lastName}`,
+            serviceCategories: service.category,
+            serviceDate: service.date,
+            serviceDescription: service.description,
+            serviceLocation: id === userId ? doerCities : ((service.doers || []).find((doer: Doer) => doer.id === id)?.cities || []).join(', '),
+            servicePrice:
+              (service.doers || []).find((doer: Doer) => doer.id === id)?.price || 0,
+            serviceStatus: 'Confirmed',
+          };
+        });
+
+        notifications.push(...newNotifications);
+        return notificationStore.setItem(id, notifications);
+      });
+
+      await Promise.all(notificationPromises);
       await delay(1000);
       return res(
         ctx.data({
           services,
         })
       );
-    });
+    })
   }),
 
+  graphql.query('GetUserNotifications', (req, res, ctx) => {
+    const { userId } = req.variables;
+
+    // Recuperar las notificaciones del usuario de IndexedDB
+    return notificationStore.getItem(userId).then(async (notifications) => {
+      await delay(1000);
+
+      return res(
+        ctx.data({
+          notifications: notifications || [],
+        })
+      );
+    });
+  })
 );
 
 export default worker;

@@ -14,9 +14,6 @@ export function Register({ user, navigator }: RegisterProps) {
       <Signup
         navigator={navigator}
         onFormSubmit={(values) => {
-          console.log({
-            ...values,
-          });
           user.register?.(values).then((user) => {
             if(user.userType === 'client') {
               navigator.goToProfile?.();

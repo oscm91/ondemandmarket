@@ -7,9 +7,6 @@ export const useNavigator = (): NavigatorState => {
 
   return {
     pathname: location.pathname,
-    goToApp: () => {
-      navigate('/app');
-    },
     goToHome: () => {
       navigate('/');
     },
@@ -26,7 +23,7 @@ export const useNavigator = (): NavigatorState => {
       navigate('/profile');
     },
     goToNotifications: () => {
-      navigate('/notification');
+      navigate('/notifications');
     },
     goToOrders: () => {
       navigate('/orders');

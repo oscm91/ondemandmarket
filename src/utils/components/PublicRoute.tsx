@@ -11,7 +11,7 @@ export function PublicRoute({ children }: PublicRouteProps) {
   const isAuth = user && user.info && user.info.id;
 
   if (['/signup', '/login', '/'].includes(navigator.pathname) && isAuth) {
-    return <Navigate to="/app" />;
+    return <Navigate to="/profile" />;
   }
 
   return children;

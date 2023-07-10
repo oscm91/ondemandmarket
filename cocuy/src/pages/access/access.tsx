@@ -14,9 +14,6 @@ export function Access({ user, navigator }: AccessProps) {
       <Login
         navigator={navigator}
         onFormSubmit={(values) => {
-          console.log({
-            ...values,
-          });
           user.login?.(values).then((user) => {
             navigator.goToProfile?.();
           });

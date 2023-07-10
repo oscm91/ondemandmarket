@@ -143,7 +143,6 @@ export const useUser = (): UserState => {
     register: (newUser) => {
       return signup({ variables: newUser })
         .then((response) => {
-          console.log(response.data);
           dispatch(addUser(response.data.user));
           Cookies.set('userId', response.data.user.id);
           return response.data.user;
@@ -161,7 +160,6 @@ export const useUser = (): UserState => {
     login: (credentials: Credentials) => {
       return login({ variables: credentials })
         .then((response) => {
-          console.log(response.data);
           dispatch(addUser(response.data.user));
           dispatch(settingSkills(response.data.skills));
           Cookies.set('userId', response.data.user.id);
@@ -180,7 +178,6 @@ export const useUser = (): UserState => {
 
       return updateSkills({ variables: { userId, skills } }) // Envía el ID del usuario y las habilidades
         .then((response) => {
-          console.log(response.data);
           dispatch(settingSkills(response.data.skills)); // Usa la acción para actualizar el estado
           return response.data.skills;
         })

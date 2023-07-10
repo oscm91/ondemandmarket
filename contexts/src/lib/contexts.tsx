@@ -11,6 +11,7 @@ import { userSlice, skillSlice } from '@cocodemy/reducers';
 import { useUser } from './user/hook';
 import { useNavigator } from './navigator/hook';
 import { useService } from './service/hook';
+import { useNotifications } from "./notifications/hook";
 
 export const store = configureStore({
   reducer: {
@@ -33,6 +34,10 @@ export const StateContext = createContext<State>({
   service: {
     servicesLoading: false,
     createServicesLoading: false,
+  },
+  notifications: {
+    list: [],
+    notificationsLoading: false,
   }
 });
 
@@ -44,10 +49,11 @@ export function StoreStateProvider({ children }: StoreStateProviderProps) {
   const user = useUser();
   const navigator = useNavigator();
   const service = useService();
+  const notifications = useNotifications();
 
   const storeState: State = useMemo(
-    () => ({ user, navigator, service }),
-    [user, navigator, service]
+    () => ({ user, navigator, service, notifications }),
+    [user, navigator, service, notifications]
   );
 
   return (

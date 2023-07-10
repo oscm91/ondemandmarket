@@ -35,7 +35,6 @@ export function Login({ onFormSubmit, navigator }: LoginProps) {
       }}
       validationSchema={LoginSchema}
       onSubmit={(values) => {
-        console.log(values);
         onFormSubmit(values);
       }}
     >
