@@ -137,6 +137,7 @@ export const useUser = (): UserState => {
     authChecking,
     signupLoading,
     loginLoading,
+    skillsLoading,
     info: user,
     skills,
     register: (newUser) => {
@@ -150,6 +151,10 @@ export const useUser = (): UserState => {
         .catch((error) => {
           console.error(error);
         });
+    },
+    logout: () => {
+      Cookies.remove('userId');
+      return Promise.resolve(true);
     },
     login: (credentials: Credentials) => {
       return login({ variables: credentials })

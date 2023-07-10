@@ -18,7 +18,7 @@ export function Access({ user, navigator }: AccessProps) {
             ...values,
           });
           user.login?.(values).then((user) => {
-            navigator.goToApp?.();
+            navigator.goToProfile?.();
           });
         }}
       />

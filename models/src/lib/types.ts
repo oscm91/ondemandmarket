@@ -22,8 +22,10 @@ export interface UserState {
   authChecking: boolean;
   signupLoading: boolean;
   loginLoading: boolean;
+  skillsLoading: boolean;
   register?: (user: User) => Promise<User>;
   login?: (credential: Credentials) => Promise<User>;
+  logout?: () => Promise<boolean>;
   updateSkills?: (skills: Skill[]) => Promise<Skill[]>;
   skills?: { [key: string]: Skill };
 }
@@ -33,7 +35,10 @@ export interface NavigatorState {
   goToRegister?: () => void;
   goToLogin?: () => void;
   goToApp?: () => void;
-  gotoServices?: () => void;
+  goToServices?: () => void;
+  goToProfile?: () => void;
+  goToOrders?: () => void;
+  goToNotifications?: () => void;
 }
 
 export interface Credentials {

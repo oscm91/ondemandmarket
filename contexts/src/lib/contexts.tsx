@@ -24,6 +24,7 @@ export const StateContext = createContext<State>({
     authChecking: true,
     signupLoading: false,
     loginLoading: false,
+    skillsLoading: false,
   },
   navigator: {
     pathname: '',

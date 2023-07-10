@@ -36,7 +36,7 @@ import AddToSelection from '@spectrum-icons/workflow/AddToSelection';
 import Book from '@spectrum-icons/workflow/Book';
 import Alert from '@spectrum-icons/workflow/Alert';
 import * as Yup from 'yup';
-import { Cities, Skill } from "@cocodemy/models";
+import { Cities, Skill } from '@cocodemy/models';
 
 interface ServicesProps {
   onFormSubmit: (values: Skill[]) => void;
@@ -265,12 +265,17 @@ const SkillSchema = Yup.object().shape({
 });
 
 const FormSchema = Yup.lazy((value: { [key: string]: Skill }) =>
-  Yup.object().shape(
-    Object.keys(value).reduce((shape: { [key: string]: Yup.Schema }, key: string) => {
-      shape[key] = SkillSchema;
-      return shape;
-    }, {})
-  ).required('At least one skill is required')
+  Yup.object()
+    .shape(
+      Object.keys(value).reduce(
+        (shape: { [key: string]: Yup.Schema }, key: string) => {
+          shape[key] = SkillSchema;
+          return shape;
+        },
+        {}
+      )
+    )
+    .required('At least one skill is required')
 );
 
 function SkillSelection({
@@ -460,14 +465,14 @@ export function Services({
   onFormSubmit,
   skills = skillsList,
   cities = citiesList,
-  initialSkills = {}
+  initialSkills = {},
 }: ServicesProps) {
   return (
     <Formik
       initialValues={initialSkills}
       validationSchema={FormSchema}
       onSubmit={(values: { [key: string]: Skill }) => {
-        onFormSubmit(Object.values(values))
+        onFormSubmit(Object.values(values));
       }}
     >
       {({ values, setValues, setFieldValue, handleSubmit, errors }) => (
@@ -509,10 +514,21 @@ export function Services({
                     <ListBox aria-label="Errors">
                       {Object.keys(errors).map((errorKey) => (
                         <Section title={errorKey}>
-                          {Object.keys(errors[errorKey]).map((errorItemKey) => (
+                          {Object.keys(
+                            (errors as { [key: string]: string })[errorKey]
+                          ).map((errorItemKey) => (
                             <Item key={errorItemKey} textValue={errorItemKey}>
                               <Alert />
-                              <Text>{errorItemKey} : {errors[errorKey][errorItemKey]}</Text>
+                              <Text>
+                                {errorItemKey} :{' '}
+                                {
+                                  (
+                                    errors as {
+                                      [key: string]: { [key: string]: string };
+                                    }
+                                  )[errorKey][errorItemKey]
+                                }
+                              </Text>
                             </Item>
                           ))}
                         </Section>

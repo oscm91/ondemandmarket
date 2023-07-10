@@ -19,9 +19,9 @@ export function Register({ user, navigator }: RegisterProps) {
           });
           user.register?.(values).then((user) => {
             if(user.userType === 'client') {
-              navigator.goToApp?.();
+              navigator.goToProfile?.();
             } else {
-              navigator.gotoServices?.();
+              navigator.goToServices?.();
             }
           });
         }}

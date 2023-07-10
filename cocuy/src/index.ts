@@ -1,3 +1,4 @@
+export * from './pages/profile/profile';
 export * from './pages/setting-service/setting-service';
 export * from './pages/access/access';
 export * from './components/loader/loader';
