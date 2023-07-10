@@ -43,8 +43,8 @@ export function Profile({ user, navigator }: ProfileProps) {
         <View>
           <Flex justifyContent="space-between">
             <Breadcrumbs>
-              <Item key="home">Home</Item>
-              <Item key="profile">Profile</Item>
+              <Item key="home" textValue="home">Home</Item>
+              <Item key="profile" textValue="profile">Profile</Item>
             </Breadcrumbs>
             <MenuTrigger>
               <ActionButton>
@@ -68,11 +68,11 @@ export function Profile({ user, navigator }: ProfileProps) {
                   }
                 }}
               >
-                <Item key="profile">Profile</Item>
-                <Item key="settingServices">Skills</Item>
-                <Item key="notifications">Notifications</Item>
-                <Item key="orders">Orders</Item>
-                <Item key="logout">Logout</Item>
+                <Item key="profile" textValue="profile">Profile</Item>
+                <Item key="settingServices" textValue="settingServices">Skills</Item>
+                <Item key="notifications" textValue="notifications">Notifications</Item>
+                <Item key="orders" textValue="orders">Orders</Item>
+                <Item key="logout" textValue="logout">Logout</Item>
               </Menu>
             </MenuTrigger>
           </Flex>
@@ -103,27 +103,27 @@ export function Profile({ user, navigator }: ProfileProps) {
               selectionMode="none"
               aria-label="Static ListView items example"
             >
-              <Item>
+              <Item key="usertype" textValue="usertype">
                 <UserActivity aria-label="Done" />
                 <Text>{user.info?.userType}</Text>
                 <Text slot="description">User Type</Text>
               </Item>
-              <Item>
+              <Item key="firstname" textValue="firstname">
                 <Location aria-label="Done" />
                 <Text>{user.info?.firstName}</Text>
                 <Text slot="description">First Name</Text>
               </Item>
-              <Item>
+              <Item key="lastname" textValue="lastname">
                 <Location aria-label="Done" />
                 <Text>{user.info?.lastName}</Text>
                 <Text slot="description">Last Name</Text>
               </Item>
-              <Item>
+              <Item key="email" textValue="email">
                 <EmailCheck aria-label="Done" />
                 <Text>{user.info?.email}</Text>
                 <Text slot="description">Email</Text>
               </Item>
-              <Item>
+              <Item key="phonenumber" textValue="phonenumber">
                 <DevicePhone aria-label="Done" />
                 <Text>{user.info?.phoneNumber}</Text>
                 <Text slot="description">Phone Number</Text>
@@ -148,30 +148,30 @@ export function Profile({ user, navigator }: ProfileProps) {
                 }
               }}
             >
-              <Item key="profile" hasChildItems>
+              <Item key="profile" textValue="profile" hasChildItems>
                 <UserActivity />
                 <Text>Profile</Text>
                 <Text slot="description">See my information</Text>
               </Item>
               {user.info?.userType === 'doer' ? (
-                <Item key="settingServices" hasChildItems>
+                <Item key="settingServices" textValue="settingServices" hasChildItems>
                   <UserActivity />
                   <Text>Skills</Text>
                   <Text slot="description">Update my skills</Text>
                 </Item>
-              ) : <></>}
-              <Item key="notifications" hasChildItems>
+              ) : null}
+              <Item key="notifications" textValue="notifications" hasChildItems>
                 <UserActivity />
                 <Text>Notifications</Text>
                 <Text slot="description">See my notifications</Text>
               </Item>
               {user.info?.userType === 'client' ? (
-                <Item key="orders" hasChildItems>
+                <Item key="orders" textValue="orders" hasChildItems>
                   <UserActivity />
                   <Text>Orders</Text>
                   <Text slot="description">Create a service order</Text>
                 </Item>
-              ) : <></>}
+              ) : null}
             </ListView>
           </View>
         </Grid>

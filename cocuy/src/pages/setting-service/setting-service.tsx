@@ -29,9 +29,9 @@ export function SettingService({ user, navigator }: SettingServiceProps) {
         <View>
           <Flex justifyContent="space-between">
             <Breadcrumbs>
-              <Item key="home">Home</Item>
-              <Item key="skills">Skills</Item>
-              <Item key="settings">Settings</Item>
+              <Item key="home" textValue="home">Home</Item>
+              <Item key="skills" textValue="skills">Skills</Item>
+              <Item key="settings" textValue="settings">Settings</Item>
             </Breadcrumbs>
             <MenuTrigger>
               <ActionButton>
@@ -39,10 +39,10 @@ export function SettingService({ user, navigator }: SettingServiceProps) {
                 <Text>Options</Text>
               </ActionButton>
               <Menu onAction={(key) => alert(key)}>
-                <Item key="cut">Home</Item>
-                <Item key="copy">Skills</Item>
-                <Item key="paste">Notifications</Item>
-                <Item key="replace">Orders</Item>
+                <Item key="home" textValue="home">Home</Item>
+                <Item key="skills" textValue="skills">Skills</Item>
+                <Item key="notifications" textValue="notifications">Notifications</Item>
+                <Item key="orders" textValue="orders">Orders</Item>
               </Menu>
             </MenuTrigger>
           </Flex>

@@ -359,7 +359,7 @@ function SkillSettings({
         }}
       >
         {(item) => (
-          <Item key={item.name}>
+          <Item key={item.name} textValue={item.name}>
             {item.name}
             <ActionMenu onAction={() => setSelectedSkill(item)}>
               <Item key="edit" textValue="Edit">
@@ -409,7 +409,7 @@ function SkillSettings({
                 >
                   <Section title="Select a city">
                     {Object.keys(cities).map((item) => (
-                      <Item key={item}>{cities[item]}</Item>
+                      <Item key={item} textValue={item}>{cities[item]}</Item>
                     ))}
                   </Section>
                 </ListBox>
