@@ -2,7 +2,7 @@
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 ✨ **Este espacio de trabajo ha sido generado por [Nx, un sistema de construcción inteligente, rápido y extensible.](https://nx.dev)** ✨
 
-On Demand Market es una plataforma que conecta a clientes con trabajadores capacitados para realizar diversas tareas. La plataforma está construida utilizando tu framework/librería de JS de preferencia (Angular, Vanilla JS, React, etc).
+On Demand Market es una plataforma que conecta a clientes con trabajadores capacitados para realizar diversas tareas. La plataforma está construida utilizando tu React.
 
 ## Características de la plataforma
 La plataforma consta de dos roles principales:

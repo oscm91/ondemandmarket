@@ -1,11 +1,20 @@
-import React from "react";
-import styles from "./early-access.module.scss";
-import { Button, Divider, Flex, Grid, Heading, Image, Provider, Text, TextField, View } from "@adobe/react-spectrum";
-import Bug from "@spectrum-icons/workflow/Bug";
-import Logo from "../../assets/logo.svg";
-import IsoLogo from "../../assets/isologo.svg";
-import VideoThumbnail from "../../assets/video-thumbnail.png";
-import { NavigatorState } from "@ondemandmarket/models";
+import React from 'react';
+import styles from './early-access.module.scss';
+import {
+  Button,
+  Divider,
+  Flex,
+  Grid,
+  Heading,
+  Image,
+  Provider,
+  Text,
+  TextField,
+  View,
+} from '@adobe/react-spectrum';
+import Bug from '@spectrum-icons/workflow/Bug';
+import IsoLogo from '../../assets/isologo.svg';
+import { NavigatorState } from '@ondemandmarket/models';
 
 /* eslint-disable-next-line */
 export interface EarlyAccessProps {
@@ -52,7 +61,7 @@ export function EarlyAccess({ navigator }: EarlyAccessProps) {
       gap="size-0"
     >
       <View gridArea="logo">
-        <Image src={Logo} width={180}></Image>
+        <Image src={IsoLogo} width={180}></Image>
       </View>
       <View
         gridArea="header"
@@ -63,12 +72,12 @@ export function EarlyAccess({ navigator }: EarlyAccessProps) {
         <Flex direction="column" gap="size-100">
           <Heading level={1}>
             <i className={styles['header--title']}>
-              Construyendo el futuro del aprendizaje en programación
+              Building the connection platform for temporary works
             </i>
           </Heading>
           <p>
-            Un nuevo formato de libro interactivo para programadores avanzados,
-            aprende sin dependencias y potenciado por inteligencia artificial
+            A new platform format to connect clients with trained workers,
+            facilitating the completion of short and medium duration tasks.
           </p>
           <View>
             <Flex
@@ -78,21 +87,12 @@ export function EarlyAccess({ navigator }: EarlyAccessProps) {
               }}
               gap="size-100"
             >
-              <TextField
-                inputMode="email"
-                type="email"
-                defaultValue="user@ondemandmarket.com"
-                width={{
-                  base: '100%',
-                  M: 'inline',
-                }}
-              />
               <Button
                 variant="primary"
                 style="fill"
                 onPress={() => navigator.goToRegister?.()}
               >
-                <Text>Obtén acceso anticipado</Text>
+                <Text>Get early access</Text>
               </Button>
             </Flex>
           </View>
@@ -227,14 +227,12 @@ export function EarlyAccess({ navigator }: EarlyAccessProps) {
         <Flex direction="column" alignItems="center">
           <Heading level={2}>
             <p className={styles['features--title']}>
-              Todo-en-uno <br /> Plataforma de desarrollo
+              All-in-one <br /> Work platform for home
             </p>
           </Heading>
           <p className={styles['tools-content']}>
-            La mejor experiencia de aprendizaje enriquecida por increíbles
-            aplicaciones
+            The best experience enriched by amazing Applications
           </p>
-          <Image marginTop="size-300" src={VideoThumbnail} alt="" />
         </Flex>
       </View>
       <View gridArea="tools" marginTop="size-600">
@@ -253,11 +251,10 @@ export function EarlyAccess({ navigator }: EarlyAccessProps) {
               </span>
             </View>
             <Heading level={3}>
-              <p className={styles['tools--title']}>Metricas</p>
+              <p className={styles['tools--title']}>Metrics</p>
             </Heading>
             <p className={styles['tools--content']}>
-              La mejor experiencia de aprendizaje enriquecida por increíbles
-              aplicaciones
+              The best experience enriched by amazing Applications
             </p>
           </Flex>
           <Flex
@@ -274,11 +271,10 @@ export function EarlyAccess({ navigator }: EarlyAccessProps) {
               </span>
             </View>
             <Heading level={3}>
-              <p className={styles['tools--title']}>Metricas</p>
+              <p className={styles['tools--title']}>Metrics</p>
             </Heading>
             <p className={styles['tools--content']}>
-              La mejor experiencia de aprendizaje enriquecida por increíbles
-              aplicaciones
+              The best experience enriched by amazing Applications
             </p>
           </Flex>
           <Flex
@@ -295,11 +291,10 @@ export function EarlyAccess({ navigator }: EarlyAccessProps) {
               </span>
             </View>
             <Heading level={3}>
-              <p className={styles['tools--title']}>Metricas</p>
+              <p className={styles['tools--title']}>Metrics</p>
             </Heading>
             <p className={styles['tools--content']}>
-              La mejor experiencia de aprendizaje enriquecida por increíbles
-              aplicaciones
+              The best experience enriched by amazing Applications
             </p>
           </Flex>
           <Flex
@@ -316,11 +311,10 @@ export function EarlyAccess({ navigator }: EarlyAccessProps) {
               </span>
             </View>
             <Heading level={3}>
-              <p className={styles['tools--title']}>Metricas</p>
+              <p className={styles['tools--title']}>Metrics</p>
             </Heading>
             <p className={styles['tools--content']}>
-              La mejor experiencia de aprendizaje enriquecida por increíbles
-              aplicaciones
+              The best experience enriched by amazing Applications
             </p>
           </Flex>
           <Flex
@@ -337,11 +331,10 @@ export function EarlyAccess({ navigator }: EarlyAccessProps) {
               </span>
             </View>
             <Heading level={3}>
-              <p className={styles['tools--title']}>Metricas</p>
+              <p className={styles['tools--title']}>Metrics</p>
             </Heading>
             <p className={styles['tools--content']}>
-              La mejor experiencia de aprendizaje enriquecida por increíbles
-              aplicaciones
+              The best experience enriched by amazing Applications
             </p>
           </Flex>
           <Flex
@@ -358,11 +351,10 @@ export function EarlyAccess({ navigator }: EarlyAccessProps) {
               </span>
             </View>
             <Heading level={3}>
-              <p className={styles['tools--title']}>Metricas</p>
+              <p className={styles['tools--title']}>Metrics</p>
             </Heading>
             <p className={styles['tools--content']}>
-              La mejor experiencia de aprendizaje enriquecida por increíbles
-              aplicaciones
+              The best experience enriched by amazing Applications
             </p>
           </Flex>
         </Flex>
@@ -387,13 +379,12 @@ export function EarlyAccess({ navigator }: EarlyAccessProps) {
           >
             <Heading level={3}>
               <p className={styles['footer--title']}>
-                Aprende rápidamente con COCODEMY
+                Work quickly with ONDEMANDMARKET
               </p>
             </Heading>
             <p className={styles['footer--content']}>
-              La mejor experiencia de aprendizaje enriquecida por increíbles
-              aplicaciones, regístrate para obtener acceso temprano a la
-              plataforma
+              The best experience enriched by amazing Applications, sign up for
+              early access to the platform
             </p>
             <View>
               <Button
@@ -401,7 +392,7 @@ export function EarlyAccess({ navigator }: EarlyAccessProps) {
                 style="fill"
                 onPress={() => navigator.goToRegister?.()}
               >
-                <Text>Obtén acceso anticipado</Text>
+                <Text>Sign Up</Text>
               </Button>
             </View>
             <Flex justifyContent="center" alignItems="center" gap="size-100">
@@ -417,7 +408,9 @@ export function EarlyAccess({ navigator }: EarlyAccessProps) {
               <p>© ondemandmarket 2023. Made with love by ondemandmarket</p>
               <p>
                 For further details, drop a mail to{' '}
-                <a href="email:hello@ondemandmarket.co">hello@ondemandmarket.co</a>
+                <a href="email:hello@ondemandmarket.co">
+                  hello@ondemandmarket.co
+                </a>
               </p>
             </Flex>
           </Flex>
