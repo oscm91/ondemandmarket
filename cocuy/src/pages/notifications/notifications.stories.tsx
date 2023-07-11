@@ -7,7 +7,9 @@ export default {
   component: Notifications,
 } as Meta;
 
-const Template: Story<NotificationsProps> = (args) => <Notifications {...args} />;
+const Template: Story<NotificationsProps> = (args) => (
+  <Notifications {...args} />
+);
 
 export const Primary = Template.bind({});
 Primary.args = {
