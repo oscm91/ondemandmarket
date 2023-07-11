@@ -73,4 +73,4 @@ La aplicación ha sido desplegada en GitHub Pages y se puede acceder en la sigui
 
 ## Resportes
 
-Se realiza analisis de rendimiento con lighthouse [https://pagespeed.web.dev/analysis/https-oscm91-github-io-ondemandmarket/tszak2byb1?form_factor=desktop](https://pagespeed.web.dev/analysis/https-oscm91-github-io-ondemandmarket/tszak2byb1?form_factor=desktop)
+Se realiza analisis de rendimiento con lighthouse [https://pagespeed.web.dev/analysis/https-oscm91-github-io-ondemandmarket/tszak2byb1?form_factor=desktop](https://pagespeed.web.dev/analysis/https-oscm91-github-io-ondemandmarket/tszak2byb1?form_factor=desktop) y Mobile-Friendly Test [https://search.google.com/test/mobile-friendly/result?id=3XP5uNW8cseyVffFs1hNlQ](https://search.google.com/test/mobile-friendly/result?id=3XP5uNW8cseyVffFs1hNlQ)
