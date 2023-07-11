@@ -1,12 +1,24 @@
-import type { Meta } from '@storybook/react';
-import { Notifications } from './notifications';
+import React from 'react';
+import { Meta, Story } from '@storybook/react';
+import { Notifications, NotificationsProps } from './notifications';
 
-const Story: Meta<typeof Notifications> = {
+export default {
+  title: 'Pages/Notifications',
   component: Notifications,
-  title: 'Notifications',
-};
-export default Story;
+} as Meta;
 
-export const Primary = {
-  args: {},
+const Template: Story<NotificationsProps> = (args) => <Notifications {...args} />;
+
+export const Primary = Template.bind({});
+Primary.args = {
+  user: {
+    info: {
+      userType: 'client',
+    },
+  },
+  navigator: {},
+  service: {},
+  notifications: {
+    list: [],
+  },
 };

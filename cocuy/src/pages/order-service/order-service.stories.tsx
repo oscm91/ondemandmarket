@@ -1,16 +1,23 @@
-import type { Meta } from '@storybook/react';
-import { OrderService } from './order-service';
+import React from 'react';
+import { Meta, Story } from '@storybook/react';
+import { OrderService, OrderServiceProps } from './order-service';
 
-const Story: Meta<typeof OrderService> = {
-  component: OrderService,
+export default {
   title: 'Pages/OrderService',
-};
-export default Story;
+  component: OrderService,
+} as Meta;
 
-export const Primary = {
-  args: {
-    user: {
+const Template: Story<OrderServiceProps> = (args) => <OrderService {...args} />;
+
+export const Primary = Template.bind({});
+Primary.args = {
+  user: {
+    info: {
+      id: '1',
       skills: [],
     },
   },
+  navigator: {},
+  service: {},
+  notifications: {},
 };

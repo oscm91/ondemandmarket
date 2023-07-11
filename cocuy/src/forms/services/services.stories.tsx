@@ -3,7 +3,7 @@ import { Services } from './services';
 
 const Story: Meta<typeof Services> = {
   component: Services,
-  title: 'Services',
+  title: 'Forms/Services',
 };
 export default Story;
 

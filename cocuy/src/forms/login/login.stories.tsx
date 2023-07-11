@@ -3,7 +3,7 @@ import { Login } from './login';
 
 const Story: Meta<typeof Login> = {
   component: Login,
-  title: 'Login',
+  title: 'Forms/Login',
 };
 export default Story;
 

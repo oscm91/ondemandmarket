@@ -21,6 +21,7 @@ import {
   UserState,
 } from '@ondemandmarket/models';
 import { parseDate } from '@internationalized/date';
+import styles from "../notifications/notifications.module.scss";
 
 /* eslint-disable-next-line */
 export interface NotificationsProps {
@@ -37,6 +38,7 @@ export function Notifications({
   notifications,
 }: NotificationsProps) {
   return (
+    <div className={styles['container']}>
     <Flex direction="column" gap="size-100">
       <View>
         <Header
@@ -67,7 +69,7 @@ export function Notifications({
       >
         {notifications.list.map((notification, index) => (
           <View key={index}>
-            <p>Service ${index + 1}</p>
+            <p>Service {index + 1}</p>
             <ListView
               selectionMode="none"
               aria-label={`Notification ${index + 1}`}
@@ -127,6 +129,7 @@ export function Notifications({
         ))}
       </Grid>
     </Flex>
+    </div>
   );
 }
 

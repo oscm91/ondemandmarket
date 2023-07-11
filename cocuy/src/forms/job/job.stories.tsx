@@ -1,12 +1,27 @@
-import type { Meta } from '@storybook/react';
-import { Job } from './job';
+import React from 'react';
+import { Meta, Story } from '@storybook/react';
+import { Job, JobProps } from './job';
 
-const Story: Meta<typeof Job> = {
+export default {
+  title: 'Forms/Job',
   component: Job,
-  title: 'Job',
-};
-export default Story;
+  argTypes: {
+    onFormSubmit: { action: 'submitted' },
+    service: { control: 'object' },
+    skills: { control: 'object' },
+    cities: { control: 'object' },
+  },
+} as Meta;
 
-export const Primary = {
-  args: {},
+const Template: Story<JobProps> = (args) => <Job {...args} />;
+
+export const Primary = Template.bind({});
+Primary.args = {
+  onFormSubmit: (values) => console.log(values),
+  service: {
+    servicesLoading: false,
+    getServiceBySkills: async () => [],
+  },
+  skills: [],
+  cities: {},
 };

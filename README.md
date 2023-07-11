@@ -32,7 +32,7 @@ Ejecuta `nx serve ondemandmarket` para un servidor de desarrollo. Navega a http:
 ## Storybook
 
 Storybook es una herramienta de desarrollo de UI que nos permite visualizar y probar los componentes de nuestra aplicación de manera aislada. Para iniciar Storybook, ejecuta `nx run ondemandmarket:storybook`.
-[Chromatic](https://main--64a96bda96f7186ced6e08c9.chromatic.com/)
+[https://main--64a96bda96f7186ced6e08c9.chromatic.com/](https://main--64a96bda96f7186ced6e08c9.chromatic.com/)
 
 ## Integración Continua con GitHub Actions
 
