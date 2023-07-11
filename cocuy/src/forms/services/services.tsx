@@ -540,7 +540,7 @@ export function Services({
                 )}
                 <Flex justifyContent="center">
                   <Button variant="accent" type="submit" marginTop="size-100">
-                    Sign up
+                    Confirm Services
                   </Button>
                 </Flex>
               </Item>

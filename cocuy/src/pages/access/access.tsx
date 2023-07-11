@@ -1,6 +1,6 @@
-import styles from "./access.module.scss";
-import Login from "../../forms/login/login";
-import { NavigatorState, UserState } from "@ondemandmarket/models";
+import styles from './access.module.scss';
+import Login from '../../forms/login/login';
+import { NavigatorState, UserState } from '@ondemandmarket/models';
 
 /* eslint-disable-next-line */
 export interface AccessProps {

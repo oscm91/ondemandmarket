@@ -1,4 +1,4 @@
-import styles from "./cocuy.module.scss";
+import styles from './cocuy.module.scss';
 
 /* eslint-disable-next-line */
 export interface CocuyProps {}

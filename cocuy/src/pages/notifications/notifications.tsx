@@ -10,12 +10,17 @@ import {
   Item,
   ListView,
   Text,
-  View
-} from "@adobe/react-spectrum";
-import Upload from "@spectrum-icons/illustrations/Upload";
-import { Header } from "../../components/header/header";
-import { NavigatorState, NotificationsState, ServiceState, UserState } from "@ondemandmarket/models";
-import { parseDate } from "@internationalized/date";
+  View,
+} from '@adobe/react-spectrum';
+import Upload from '@spectrum-icons/illustrations/Upload';
+import { Header } from '../../components/header/header';
+import {
+  NavigatorState,
+  NotificationsState,
+  ServiceState,
+  UserState,
+} from '@ondemandmarket/models';
+import { parseDate } from '@internationalized/date';
 
 /* eslint-disable-next-line */
 export interface NotificationsProps {

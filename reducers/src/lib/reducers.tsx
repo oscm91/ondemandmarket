@@ -1,4 +1,4 @@
-import styles from "./reducers.module.scss";
+import styles from './reducers.module.scss';
 
 /* eslint-disable-next-line */
 export interface ReducersProps {}

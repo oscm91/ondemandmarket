@@ -1,12 +1,22 @@
-import styles from "./profile.module.scss";
-import { NavigatorState, UserState } from "@ondemandmarket/models";
-import { Divider, Flex, Grid, Heading, IllustratedMessage, Item, ListView, Text, View } from "@adobe/react-spectrum";
-import RealTimeCustomerProfile from "@spectrum-icons/workflow/RealTimeCustomerProfile";
-import DevicePhone from "@spectrum-icons/workflow/DevicePhone";
-import EmailCheck from "@spectrum-icons/workflow/EmailCheck";
-import Location from "@spectrum-icons/workflow/Location";
-import UserActivity from "@spectrum-icons/workflow/UserActivity";
-import { Header } from "../../components/header/header";
+import styles from './profile.module.scss';
+import { NavigatorState, UserState } from '@ondemandmarket/models';
+import {
+  Divider,
+  Flex,
+  Grid,
+  Heading,
+  IllustratedMessage,
+  Item,
+  ListView,
+  Text,
+  View,
+} from '@adobe/react-spectrum';
+import RealTimeCustomerProfile from '@spectrum-icons/workflow/RealTimeCustomerProfile';
+import DevicePhone from '@spectrum-icons/workflow/DevicePhone';
+import EmailCheck from '@spectrum-icons/workflow/EmailCheck';
+import Location from '@spectrum-icons/workflow/Location';
+import UserActivity from '@spectrum-icons/workflow/UserActivity';
+import { Header } from '../../components/header/header';
 
 /* eslint-disable-next-line */
 export interface ProfileProps {
