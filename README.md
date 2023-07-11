@@ -3,7 +3,7 @@
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 ✨ **Este espacio de trabajo ha sido generado por [Nx, un sistema de construcción inteligente, rápido y extensible.](https://nx.dev)** ✨
 
-On Demand Market es una plataforma que conecta a clientes con trabajadores capacitados para realizar diversas tareas. La plataforma está construida utilizando tu React.
+On Demand Market es una plataforma que conecta a clientes con trabajadores capacitados para realizar diversas tareas. La plataforma está construida utilizando React.
 
 ## Características de la plataforma
 
@@ -55,7 +55,7 @@ Visita la [Documentación de Nx](https://nx.dev) para aprender más.
 
 ## Configuración del proyecto
 
-Este proyecto fue iniciado con Nx y usa React para la UI. Los estilos están escritos en SCSS. El proyecto está configurado para usar la API de Rick and Morty para obtener datos de los personajes. El proyecto también incluye pruebas unitarias.
+Este proyecto fue iniciado con Nx y usa React para la UI. Los estilos están escritos en SCSS. El proyecto está configurado para usar la API Mock para obtener datos. El proyecto también la configuración de pruebas unitarias con Vitest y Testing Library.
 
 ## Monorepo
 

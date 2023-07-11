@@ -24,10 +24,6 @@ const notificationStore = localForage.createInstance({
   name: 'notificationStore',
 });
 
-function delay(ms: number) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
 export const worker = setupWorker(
   graphql.mutation('Signup', (req, res, ctx) => {
     const { firstName, lastName, phoneNumber, email, password, userType } =
@@ -50,7 +46,6 @@ export const worker = setupWorker(
 
     // Almacenar el usuario en IndexedDB con la ID como clave
     return userStore.setItem(id, user).then(async () => {
-      await delay(1000);
       return res(
         ctx.data({
           user,
@@ -76,7 +71,6 @@ export const worker = setupWorker(
         return undefined;
       })
       .then(async (user) => {
-        await delay(1000);
 
         if (user) {
           if ((user as User).userType === 'doer') {
@@ -97,7 +91,6 @@ export const worker = setupWorker(
 
     // Almacenar las habilidades en IndexedDB con el ID del usuario como clave
     return skillStore.setItem(userId, skills).then(async () => {
-      await delay(1000);
       return res(
         ctx.data({
           skills,
@@ -111,7 +104,6 @@ export const worker = setupWorker(
 
     // Recuperar el usuario de IndexedDB
     return userStore.getItem(id).then(async (user) => {
-      await delay(1000);
 
       if (user) {
         if ((user as User).userType === 'doer') {
@@ -194,8 +186,6 @@ export const worker = setupWorker(
       return undefined;
     });
 
-    await delay(1000);
-
     return res(
       ctx.data({
         services: Object.values(servicesInfo),
@@ -265,7 +255,6 @@ export const worker = setupWorker(
       });
 
       await Promise.all(notificationPromises);
-      await delay(1000);
       return res(
         ctx.data({
           services,
@@ -279,7 +268,6 @@ export const worker = setupWorker(
 
     // Recuperar las notificaciones del usuario de IndexedDB
     return notificationStore.getItem(userId).then(async (notifications) => {
-      await delay(1000);
 
       return res(
         ctx.data({
