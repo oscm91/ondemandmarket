@@ -70,3 +70,7 @@ El proyecto utiliza una estructura de monorepo gestionada por Nx. Esto permite u
 ## Despliegue
 
 La aplicación ha sido desplegada en GitHub Pages y se puede acceder en la siguiente URL: [https://oscm91.github.io/ondemandmarket](https://oscm91.github.io/ondemandmarket)
+
+## Resportes
+
+Se realiza analisis de rendimiento con lighthouse [https://pagespeed.web.dev/analysis/https-oscm91-github-io-ondemandmarket/tszak2byb1?form_factor=desktop](https://pagespeed.web.dev/analysis/https-oscm91-github-io-ondemandmarket/tszak2byb1?form_factor=desktop)
